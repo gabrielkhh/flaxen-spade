@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+    <title>flaxen.</title>
+</head>
+<body>
+<div id="app">
+    {% include 'layouts/nav.html' %}
+    <div class="container">
+        <div class="columns">
+            {% include 'layouts/sidebar.html' %}
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
+<script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+{% include 'layouts/vue-templates.html' %}
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
