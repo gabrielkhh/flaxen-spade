@@ -8,13 +8,10 @@ from factory import create_app
 @pytest.fixture
 def client():
     f = create_app()
-    client = f.test_client()
-    context = f.app_context()
-    context.push()
-
-    yield client
-
-    context.pop()
+    with f.test_client() as client:
+        with f.app_context():
+            pass
+        yield client
 
 
 def test_home(client: FlaskClient):
