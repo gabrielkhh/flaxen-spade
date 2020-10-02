@@ -1,5 +1,7 @@
-## Getting Started
+
+## Getting Started [![Build Status](https://travis-ci.com/ict1002-42/flaxen-spade.svg?token=BJzzpiVHKm2chRHcywxY&branch=master)](https://travis-ci.com/ict1002-42/flaxen-spade)
 `git clone https://github.com/ict1002-42/flaxen-spade`
+
 
 ### Installing dependencies
 #### With Poetry
