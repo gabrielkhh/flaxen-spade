@@ -1,10 +1,11 @@
 ## Getting Started
+`git clone https://github.com/ict1002-42/flaxen-spade`
 
 ### Installing dependencies
 #### With Poetry
 `poetry install`
 
-#### pip
+#### or pip
 `pip install -r requirements.txt`
 
 ### Dev
