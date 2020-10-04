@@ -15,6 +15,6 @@ def client():
 
 
 def test_home(client: FlaskClient):
-    response: Response = client.get('/')
+    response: Response = client.get("/")
     assert response.status_code == 200
-    assert b'Lorem ipsum' in response.data
+    assert b"Lorem ipsum" in response.data

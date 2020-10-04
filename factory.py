@@ -1,15 +1,17 @@
 import os
+
 from flask import Flask
+from flask_debugtoolbar import DebugToolbarExtension
+
 from backend.api import api
 from cache import cache
 from cli import cli
 from frontend.index import app as frontend
-from flask_debugtoolbar import DebugToolbarExtension
 
 
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(SECRET_KEY='JtgKOSZ3fleZu7pDm9hI0Kkf4OnGjVE1l1+hDRecNnU=')
+    app.config.from_mapping(SECRET_KEY="JtgKOSZ3fleZu7pDm9hI0Kkf4OnGjVE1l1+hDRecNnU=")
 
     # ensure the instance folder exists
     try:

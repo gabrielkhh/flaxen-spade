@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+
 from cache import cache
 
 app = Blueprint("frontend", __name__)
