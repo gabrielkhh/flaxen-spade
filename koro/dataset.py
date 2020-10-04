@@ -6,6 +6,8 @@ from typing import Dict, List, Optional, TextIO
 
 from flask import current_app
 
+from cache import cache
+
 
 class BaseLoader(ABC):
     def resolve_absolute_path(self, filename: str) -> str:
@@ -14,6 +16,7 @@ class BaseLoader(ABC):
 
         return path.join(current_app.root_path, "raw_datasets", filename)
 
+    @cache.memoize(500)
     def load_file(self, filename: str):
         """
         Serialize a file.
