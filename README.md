@@ -15,6 +15,37 @@
 - `cp .env.example .env` (secrets and config goes here)
 - `flask run`
 
+## How-tos
+
+## Parsing files
+#### JsonLoader
+```python
+from koro.dataset import JsonLoader
+
+reader = JsonLoader()
+stops = reader.load_file('relative-path-to-your-file-in-rawdatasets.json')
+```
+
+#### CsvLoader
+```python
+from koro.dataset import CsvLoader
+
+reader = CsvLoader()
+# Or a list of custom headers. This affects the key you'll access the CSV
+# reader = CsvLoader(['year_month']) 
+entries = reader.load_file('relative-path.csv')
+for entry in entries:
+    print(f"All taps: {entry['TAP_OUT_VOLUME']}")
+```
+
+#### Haversine: Distance between two points on earth
+```python
+from koro.geo import haversine
+
+location1 = (25.0010, 136.9987)
+location2 = (25.0, 71.0)
+in_kilometers = haversine(location1, location2)
+```
 
 ## Formatting code
 - `pip install black`
