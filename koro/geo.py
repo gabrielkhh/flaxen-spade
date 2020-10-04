@@ -1,6 +1,8 @@
 from math import asin, cos, radians, sin, sqrt
 from typing import Tuple
 
+import requests as http
+
 Coordinate = Tuple[float, float]
 
 
@@ -26,3 +28,12 @@ def haversine(first: Coordinate, second: Coordinate) -> float:
     radius_of_earth = 6371
 
     return round(angular_distance_in_radians * radius_of_earth, 2)
+
+
+def resolve_coordinates(location_name: str):
+    response = http.post(
+        "https://places-dsn.algolia.net/1/places/query",
+        json={"query": location_name, "language": "en", "countries": "sg"},
+    )
+
+    return response.json()["hits"][0]["_geoloc"]
