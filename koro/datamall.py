@@ -111,6 +111,7 @@ class Datamall:
         self.http = sessions.BaseUrlSession(getenv("DMALL_URL"))
 
     def bus_arrivals(self, bus_stop_code: str) -> Arrivals:
-        return Arrivals(
-            self.http.get("BusArrivalv2", params={"BusStopCode": bus_stop_code}).json()
-        )
+        response = self.http.get("BusArrivalv2", params={"BusStopCode": bus_stop_code})
+        # Let requests raise and exception if status is non-200
+        response.raise_for_status()
+        return Arrivals(response.json())
