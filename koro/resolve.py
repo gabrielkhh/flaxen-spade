@@ -5,7 +5,8 @@ from koro.dataset import JsonLoader
 
 
 class Stop:
-    def __init__(self, stop_data: Dict):
+    def __init__(self, stop_code: str, stop_data: Dict):
+        self.stop_code = stop_code
         self.stop_data = stop_data
 
     @property
@@ -20,10 +21,13 @@ class Stop:
     def longitude(self):
         return self.stop_data["lng"]
 
+    def __repr__(self) -> str:
+        return self.stop_code
+
 
 class StopFactory:
     @staticmethod
     @cache.memoize()
     def load_stop(bus_stop_code: str) -> Stop:
         read = JsonLoader()
-        return Stop(read.load_file("static/stops.json")[bus_stop_code])
+        return Stop(bus_stop_code, read.load_file("static/stops.json")[bus_stop_code])
