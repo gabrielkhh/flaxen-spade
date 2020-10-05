@@ -97,7 +97,7 @@ class Arrivals:
         """
         service = first_true(
             self.payload["Services"],
-            lambda service: service["ServiceNo"] == service_number,
+            lambda serv: serv["ServiceNo"] == service_number,
         )
 
         if service is None:
