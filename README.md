@@ -15,10 +15,10 @@
 - `cp .env.example .env` (secrets and config goes here)
 - `flask run`
 
-## How-tos
+# How-tos
 
-# Parsing files
-#### JsonLoader
+## Parsing files
+### JsonLoader
 ```python
 from koro.dataset import JsonLoader
 
@@ -28,7 +28,7 @@ reader = JsonLoader()
 stops = reader.load_file("static/stops.json")
 ```
 
-#### CsvLoader
+### CsvLoader
 ```python
 from koro.dataset import CsvLoader
 
@@ -40,7 +40,7 @@ for entry in entries:
     print(f"All taps: {entry['TAP_OUT_VOLUME']}")
 ```
 
-#### Haversine: Distance between two points on earth
+### Haversine: Distance between two points on earth
 ```python
 from koro.geo import haversine
 
