@@ -1,5 +1,5 @@
 from math import asin, cos, radians, sin, sqrt
-from typing import Tuple
+from typing import Dict, Tuple
 
 import requests as http
 
@@ -30,7 +30,7 @@ def haversine(first: Coordinate, second: Coordinate) -> float:
     return round(angular_distance_in_radians * radius_of_earth, 2)
 
 
-def resolve_coordinates(location_name: str):
+def resolve_coordinates(location_name: str) -> Dict[str, float]:
     response = http.post(
         "https://places-dsn.algolia.net/1/places/query",
         json={"query": location_name, "language": "en", "countries": "sg"},
