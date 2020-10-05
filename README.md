@@ -23,7 +23,9 @@
 from koro.dataset import JsonLoader
 
 reader = JsonLoader()
-stops = reader.load_file('relative-path-to-your-file-in-rawdatasets.json')
+# Root is pinned to raw_datasets/
+# This means your provided path should be relative to that directory
+stops = reader.load_file('static/stops.json')
 ```
 
 #### CsvLoader
