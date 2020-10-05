@@ -95,12 +95,15 @@ class Arrivals:
         :param service_number: Bus service number
         :return: Info about the specific service
         """
-        return Arrived(
-            first_true(
-                self.payload["Services"],
-                lambda service: service["ServiceNo"] == service_number,
-            )
+        service = first_true(
+            self.payload["Services"],
+            lambda service: service["ServiceNo"] == service_number,
         )
+
+        if service is None:
+            raise ValueError(f"{service_number} does not exist at that stop!")
+
+        return Arrived(service)
 
 
 class Datamall:
