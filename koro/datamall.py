@@ -46,21 +46,24 @@ class Arrived:
 
         return seat_mapping[self.get_bus_by_key(index)["Load"]]
 
+    def has_already_left(self, index=0) -> bool:
+        return self.get_arrival(index).is_past()
+
     def is_wheelchair_accessible(self, index=0) -> bool:
         if self.get_bus_by_key(index)["Feature"] == "WAB":
             return True
 
         return False
 
-    def get_arrival(self, index=0) -> str:
+    def get_arrival(self, index=0) -> pendulum.DateTime:
         """
         :param index:
-        :return: ISO 8601 format
+        :return: Instance of pendulum
         """
-        return self.get_bus_by_key(index)["EstimatedArrival"]
+        return pendulum.parse(self.get_bus_by_key(index)["EstimatedArrival"])
 
     def get_friendly_arrival(self, index=0) -> str:
-        return pendulum.parse(self.get_arrival(index)).diff_for_humans()
+        return self.get_arrival(index).diff_for_humans()
 
     @property
     def origin(self) -> Stop:
@@ -71,7 +74,7 @@ class Arrived:
         return StopFactory.load_stop(self.get_next_bus()["DestinationCode"])
 
     @property
-    def arriving(self) -> str:
+    def arriving(self) -> pendulum.DateTime:
         return self.get_arrival()
 
     @property
