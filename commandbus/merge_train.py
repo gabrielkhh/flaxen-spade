@@ -4,6 +4,7 @@ import regex
 from flask import current_app
 
 from koro.dataset import CsvLoader, JsonLoader
+from koro.manipulation import dataset_path
 
 
 def is_matched(match, to_match) -> bool:
@@ -12,9 +13,7 @@ def is_matched(match, to_match) -> bool:
 
 def run():
     headers = "station_code,mrt_station,mrt_line,lat,long\n"
-    path_to_merged = path.join(
-        current_app.root_path, "raw_datasets/merged/train-data.csv"
-    )
+    path_to_merged = dataset_path("merged/train-data.csv")
 
     coordinates = JsonLoader().load_file("raw_other/rails.geojson")
     stations = CsvLoader(delimiter="\t").load_file("raw_other/train-station.csv")

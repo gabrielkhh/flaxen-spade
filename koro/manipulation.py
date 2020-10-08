@@ -15,6 +15,9 @@ def first_true(iterable, pred=None, default=None):
 
 
 def base_path() -> str:
+    if current_app.root_path is None:
+        raise ValueError("No base path set for flask.")
+
     return current_app.root_path
 
 

@@ -1,20 +1,15 @@
 import json
 from abc import ABC, abstractmethod
 from csv import DictReader
-from os import path
 from typing import Dict, List, Optional, TextIO
 
-from flask import current_app
-
 from cache import cache
+from koro.manipulation import dataset_path
 
 
 class BaseLoader(ABC):
     def resolve_absolute_path(self, filename: str) -> str:
-        if current_app.root_path is None:
-            raise ValueError("No base path set for flask.")
-
-        return path.join(current_app.root_path, "raw_datasets", filename)
+        return dataset_path(filename)
 
     @cache.memoize(500)
     def load_file(self, filename: str):
