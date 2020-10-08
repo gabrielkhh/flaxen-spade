@@ -44,11 +44,12 @@ class JsonLoader(BaseLoader):
 
 
 class CsvLoader(BaseLoader):
-    def __init__(self, headers: Optional[List[str]] = None):
+    def __init__(self, headers: Optional[List[str]] = None, delimiter=","):
         """
         :param headers: Different headers passed to DictReader. Will affect key name.
         """
         self.headers = headers
+        self.delimiter = delimiter
 
     def serialize(self, file: TextIO) -> List[Dict]:
         """
@@ -57,4 +58,4 @@ class CsvLoader(BaseLoader):
         :param file:
         :return:
         """
-        return list(DictReader(file))
+        return list(DictReader(file, delimiter=self.delimiter))
