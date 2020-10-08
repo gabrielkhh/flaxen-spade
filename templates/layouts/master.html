@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.3.45/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css">
+    <link rel="stylesheet" href="//unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
     <title>flaxen.</title>
 </head>
@@ -13,7 +15,6 @@
     {% include 'layouts/nav.html' %}
     <div class="container">
         <div class="columns">
-            {% include 'layouts/sidebar.html' %}
             {% block content %}
             {% endblock %}
         </div>
@@ -22,6 +23,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
 <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/vue2-leaflet"></script>
 {% include 'layouts/vue-templates.html' %}
 <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>

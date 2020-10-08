@@ -7,7 +7,7 @@ html, body {
 }
 
 nav.navbar {
-    border-top: 4px solid #276cda;
+    border-top: 4px solid #ff9f05;
     margin-bottom: 1rem;
 }
 
@@ -98,4 +98,8 @@ nav.navbar {
 .events-card .card-table {
     max-height: 250px;
     overflow-y: scroll;
+}
+
+.leaflet-container {
+    z-index: 1;
 }

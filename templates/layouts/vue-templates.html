@@ -1,3 +1,22 @@
-<script type="text/x-template" id="templ">
-    <h1>!{ mmm }</h1>
+{% raw %}
+<script type="text/x-template" id="tested">
+    <div style="height: 800px;">
+        <h1 class="title">Bus: {{ service }}</h1>
+        <l-map
+                style="height: 80%; width: 100%"
+                :zoom="zoom"
+                :center="center"
+                ref="leafmap"
+                @ready="boundMapRects"
+        >
+            <l-tile-layer :url="url"></l-tile-layer>
+            <l-polyline :lat-lngs="busRoute"></l-polyline>
+            <template v-for="route in busStops">
+                <template v-for="point in route">
+                    <l-circle-marker :radius="3" color="#e817a2" :lat-lng="point"></l-circle-marker>
+                </template>
+            </template>
+        </l-map>
+    </div>
 </script>
+{% endraw %}
