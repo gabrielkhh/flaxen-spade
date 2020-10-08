@@ -40,6 +40,7 @@ for entry in entries:
     print(f"All taps: {entry['TAP_OUT_VOLUME']}")
 ```
 
+## Geo
 ### Haversine: Distance between two points on earth
 ```python
 from koro.geo import haversine
@@ -49,19 +50,20 @@ location2 = (25.0, 71.0)
 in_kilometers = haversine(location1, location2)
 ```
 
-### Geocoding
+### Reverse geocoding
 ```python
 from koro.geo import resolve_coordinates
 
 resolve_coordinates('changi airport') # {'lat': 1.3384, 'lng': 103.984}
 ```
 
+## Transport
 ### Train Stations
 ```python
 from koro.resolve import TrainStationFactory
 
 # Case insensitive
-station = TrainStationFactory.load_station("NS1")
+station = TrainStationFactory.load_station("NS1") # an instance of TrainStation
 station.code # NS1
 station.name # Jurong East
 station.line # North South Line
@@ -112,6 +114,17 @@ stop.latitude # 1.27900819665099
 stop.longitude # 103.83860360621959
 stop.stop_code # 10018
 stop.stop_data # raw data from json file
+```
+
+### Bus Service
+```python
+from koro.resolve import BusServiceFactory
+
+service = BusServiceFactory.load_service("812")
+service.bus_service_code # 812
+service.stops # List (1st route, 2nd route if any), each containing an instance of "Stop" (see above)
+service.points # List (1st route, 2nd route if any), each containing a tuple of (lat, long) (Used for passing to charting frontend)
+service.polyline # List of list of two floats [lat, long]. Used for passing to frontend rendering.
 ```
 
 ## Formatting code
