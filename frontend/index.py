@@ -9,10 +9,13 @@ logger = LocalProxy(lambda: current_app.logger)
 app = Blueprint("frontend", __name__)
 
 
+@app.route('/')
+def index():
+    return render_template("index.html")
+
+
 @app.route("/bus/<service>")
-def index(service):
+def bus_service(service):
     service = BusServiceFactory.load_service(service.upper())
 
-    return render_template(
-        "services.html", service=service
-    )
+    return render_template("services.html", service=service)
