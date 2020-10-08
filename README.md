@@ -20,7 +20,7 @@
 ## Paths
 ```python
 from koro.manipulation import dataset_path
-
+# This ensures you'll always referencing the same files regardless of your current/script directory
 dataset_path("large/origin_destination_bus_202006.csv") # fully qualified path
 dataset_path("large", "origin_destination_bus_202006.csv") # ditto
 ```
