@@ -1,5 +1,5 @@
 import json
-from typing import Dict
+from typing import Dict, List, Tuple
 
 import polyline
 
@@ -51,15 +51,15 @@ class BusService:
 
     def resolve_routes(self):
         for route in self.stops:
-            self.resolved_stop_coordinates.append([
-                (stop['lat'], stop['lng']) for stop in route
-            ])
+            self.resolved_stop_coordinates.append(
+                [(stop.latitude, stop.longitude) for stop in route]
+            )
 
-    def get_stop(self, bus_stop_code) -> Dict:
-        return StopFactory.load_stop(bus_stop_code).stop_data
+    def get_stop(self, bus_stop_code) -> Stop:
+        return StopFactory.load_stop(bus_stop_code)
 
     @property
-    def stops(self):
+    def stops(self) -> List[List[Stop]]:
         if self.resolved_stops:
             return self.resolved_stops
 
@@ -67,7 +67,7 @@ class BusService:
         return self.resolved_stops
 
     @property
-    def points(self):
+    def points(self) -> List[List[Tuple[float, float]]]:
         # Use stored attr on subsequent calls
         if self.resolved_stop_coordinates:
             return self.resolved_stop_coordinates
@@ -76,12 +76,16 @@ class BusService:
         return self.resolved_stop_coordinates
 
     @property
-    def polyline(self):
+    def polyline(self) -> List[List[float]]:
         try:
-            loaded = JsonLoader().load_file(f"static/routes/mytransportsg/{self.bus_service_code}.json")[0]
+            loaded = JsonLoader().load_file(
+                f"static/routes/mytransportsg/{self.bus_service_code}.json"
+            )[0]
         except FileNotFoundError:
             try:
-                loaded = JsonLoader().load_file(f"static/routes/onemapsg/{self.bus_service_code}.json")[0]
+                loaded = JsonLoader().load_file(
+                    f"static/routes/onemapsg/{self.bus_service_code}.json"
+                )[0]
             except FileNotFoundError as e:
                 raise e
 
