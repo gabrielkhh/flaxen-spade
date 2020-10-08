@@ -30,14 +30,8 @@ logging.config.dictConfig(
 
 
 def create_app():
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__)
     app.config.from_mapping(SECRET_KEY="JtgKOSZ3fleZu7pDm9hI0Kkf4OnGjVE1l1+hDRecNnU=")
-
-    # ensure the instance folder exists
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
 
     cache.init_app(app)
     toolbar = DebugToolbarExtension()
