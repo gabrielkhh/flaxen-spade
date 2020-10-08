@@ -17,6 +17,14 @@
 
 # How-tos
 
+## Paths
+```python
+from koro.manipulation import dataset_path
+
+dataset_path("large/origin_destination_bus_202006.csv") # fully qualified path
+dataset_path("large", "origin_destination_bus_202006.csv") # ditto
+```
+
 ## Parsing files
 ### JsonLoader
 ```python
