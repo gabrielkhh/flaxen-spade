@@ -5,6 +5,7 @@ from cache import cache
 from koro.geo import resolve_coordinates
 
 cli = Blueprint("flaxen", __name__, cli_group=None)
+merge = Blueprint("flaxen-merge", __name__, cli_group="merge")
 
 
 @cli.cli.command("clear-cache")
@@ -27,3 +28,12 @@ def stats(file):
     """Help output here"""
     print(f"Stats for {file}")
     print(current_app.instance_path)
+
+
+@merge.cli.command("train-geo")
+def merge_train():
+    """Merges train-station.csv and rails.geojson to get train geo data."""
+    from commandbus.merge_train import run
+
+    run()
+    click.echo("If you see BP14 missing, it is now defunct.")
