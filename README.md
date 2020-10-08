@@ -56,6 +56,19 @@ from koro.geo import resolve_coordinates
 resolve_coordinates('changi airport') # {'lat': 1.3384, 'lng': 103.984}
 ```
 
+### Train Stations
+```python
+from koro.resolve import TrainStationFactory
+
+# Case insensitive
+station = TrainStationFactory.load_station("NS1")
+station.code # NS1
+station.name # Jurong East
+station.line # North South Line
+station.latitude # '1.333115'
+station.longitude # '103.742297'
+```
+
 ### Bus Arrivals
 ```python
 from koro.datamall import Datamall, Seat
