@@ -1,3 +1,4 @@
+import logging.config
 import os
 
 from flask import Flask
@@ -5,8 +6,27 @@ from flask_debugtoolbar import DebugToolbarExtension
 
 from backend.api import api
 from cache import cache
-from cli import cli
+from cli import cli, merge
 from frontend.index import app as frontend
+
+logging.config.dictConfig(
+    {
+        "version": 1,
+        "formatters": {
+            "default": {
+                "format": "[%(asctime)s] %(levelname)s in %(module)s: %(message)s",
+            }
+        },
+        "handlers": {
+            "wsgi": {
+                "class": "logging.StreamHandler",
+                "stream": "ext://flask.logging.wsgi_errors_stream",
+                "formatter": "default",
+            }
+        },
+        "root": {"level": "INFO", "handlers": ["wsgi"]},
+    }
+)
 
 
 def create_app():
@@ -27,5 +47,6 @@ def create_app():
     app.register_blueprint(frontend, templates="templates")
     app.register_blueprint(api, url_prefix="/api")
     app.register_blueprint(cli)
+    app.register_blueprint(merge)
 
     return app
