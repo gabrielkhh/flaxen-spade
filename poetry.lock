@@ -138,20 +138,20 @@ werkzeug = "*"
 
 [[package]]
 category = "main"
-description = "Replace the default ``flask shell`` command with a similar one running PTPython."
-name = "flask-shell-ptpython"
+description = "An improved shell command for the Flask CLI"
+name = "flask-konch"
 optional = false
 python-versions = "*"
-version = "1.0.2"
+version = "2.0.0"
 
 [package.dependencies]
-Flask = ">=0.12.2"
-click = ">=6.7"
-ptpython = ">=0.41"
+Flask = ">=0.11"
+konch = ">=2.0.0"
 
 [package.extras]
-all = ["flake8-future-import (>=0.4.3)", "flake8-future-import (>=0.4.3)"]
-tests = ["flake8-future-import (>=0.4.3)"]
+dev = ["pytest", "flake8 (3.6.0)", "pre-commit (1.14.0)", "tox", "flake8-bugbear (18.8.0)"]
+lint = ["flake8 (3.6.0)", "pre-commit (1.14.0)", "flake8-bugbear (18.8.0)"]
+tests = ["pytest"]
 
 [[package]]
 category = "main"
@@ -218,6 +218,19 @@ MarkupSafe = ">=0.23"
 
 [package.extras]
 i18n = ["Babel (>=0.8)"]
+
+[[package]]
+category = "main"
+description = "CLI and configuration utility for the Python shell, optimized for simplicity and productivity."
+name = "konch"
+optional = false
+python-versions = ">=3.6"
+version = "4.2.2"
+
+[package.extras]
+dev = ["pytest", "mock", "scripttest (1.3)", "ipython", "bpython", "mypy (0.701)", "flake8 (3.7.7)", "flake8-bugbear (19.3.0)", "pre-commit (1.17.0)", "ptpython", "tox"]
+lint = ["mypy (0.701)", "flake8 (3.7.7)", "flake8-bugbear (19.3.0)", "pre-commit (1.17.0)"]
+tests = ["pytest", "mock", "scripttest (1.3)", "ipython", "bpython"]
 
 [[package]]
 category = "main"
@@ -304,6 +317,17 @@ version = "0.13.1"
 
 [package.extras]
 dev = ["pre-commit", "tox"]
+
+[[package]]
+category = "main"
+description = "A Python implementation of Google's Encoded Polyline Algorithm Format."
+name = "polyline"
+optional = false
+python-versions = "*"
+version = "1.4.0"
+
+[package.dependencies]
+six = ">=1.8.0"
 
 [[package]]
 category = "main"
@@ -534,7 +558,7 @@ version = "0.35.1"
 test = ["pytest (>=3.0.0)", "pytest-cov"]
 
 [metadata]
-content-hash = "c860b5bf9c1bb8988b207b3fcfa87dc7f051988b355feb4b5ec7b0c6a77dde54"
+content-hash = "db8219dfbf6ae541b9b870dccc319a90b62f4d13faecff95ba846d166049575c"
 lock-version = "1.0"
 python-versions = "^3.8"
 
@@ -585,8 +609,9 @@ flask-debugtoolbar = [
     {file = "Flask-DebugToolbar-0.11.0.tar.gz", hash = "sha256:3c4e79d354ede014e6657c545a536d4fb273cc89e3fd6b4835b02e346dd3aab4"},
     {file = "Flask_DebugToolbar-0.11.0-py2.py3-none-any.whl", hash = "sha256:0e9a80d4c599233c68376e81cc99976200b5ac5248cfb24f18935cc5b69ac5b3"},
 ]
-flask-shell-ptpython = [
-    {file = "flask-shell-ptpython-1.0.2.tar.gz", hash = "sha256:f6ddfc08484f4263d545859ceafe6f370bf601832a59b4f5d1afb6880b338953"},
+flask-konch = [
+    {file = "flask-konch-2.0.0.tar.gz", hash = "sha256:bda277e071c09161bb67e8081ce280a5b5738a6df7c577a15f771c6f88284422"},
+    {file = "flask_konch-2.0.0-py2.py3-none-any.whl", hash = "sha256:49cda035f89593a5e5f7389ec84cfb5d1efa66eef6011d552b5492fbba936e10"},
 ]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
@@ -611,6 +636,10 @@ jedi = [
 jinja2 = [
     {file = "Jinja2-2.11.2-py2.py3-none-any.whl", hash = "sha256:f0a4641d3cf955324a89c04f3d94663aa4d638abe8f733ecd3582848e1c37035"},
     {file = "Jinja2-2.11.2.tar.gz", hash = "sha256:89aab215427ef59c34ad58735269eb58b1a5808103067f7bb9d5836c651b3bb0"},
+]
+konch = [
+    {file = "konch-4.2.2-py2.py3-none-any.whl", hash = "sha256:4058b03f3dd432a5380b09ee1487e7efb1f1e40e327b698855b45d5521f9f5fb"},
+    {file = "konch-4.2.2.tar.gz", hash = "sha256:853bb3ccfd31330c2ca27951d1cc877387aac36b50b6f32c050fa7df5355d974"},
 ]
 markupsafe = [
     {file = "MarkupSafe-1.1.1-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:09027a7803a62ca78792ad89403b1b7a73a01c8cb65909cd876f7fcebd79b161"},
@@ -705,6 +734,10 @@ pendulum = [
 pluggy = [
     {file = "pluggy-0.13.1-py2.py3-none-any.whl", hash = "sha256:966c145cd83c96502c3c3868f50408687b38434af77734af1e9ca461a4081d2d"},
     {file = "pluggy-0.13.1.tar.gz", hash = "sha256:15b2acde666561e1298d71b523007ed7364de07029219b604cf808bfa1c765b0"},
+]
+polyline = [
+    {file = "polyline-1.4.0-py2.py3-none-any.whl", hash = "sha256:6559a0d5d37f4d14255744b3c6a648d5ff480d3d5c5f30186effc72a4142fd6c"},
+    {file = "polyline-1.4.0.tar.gz", hash = "sha256:7c7f89d09a09c7b6161bdbfb4fd304b186fc7a2060fa4f31cb3f61c646a5c074"},
 ]
 prompt-toolkit = [
     {file = "prompt_toolkit-3.0.7-py3-none-any.whl", hash = "sha256:83074ee28ad4ba6af190593d4d4c607ff525272a504eb159199b6dd9f950c950"},
