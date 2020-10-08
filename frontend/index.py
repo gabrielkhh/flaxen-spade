@@ -1,7 +1,6 @@
 from flask import Blueprint, current_app, render_template
 from werkzeug.local import LocalProxy
 
-from koro.dataset import JsonLoader
 from koro.resolve import BusServiceFactory
 
 logger = LocalProxy(lambda: current_app.logger)
@@ -9,7 +8,7 @@ logger = LocalProxy(lambda: current_app.logger)
 app = Blueprint("frontend", __name__)
 
 
-@app.route('/')
+@app.route("/")
 def index():
     return render_template("index.html")
 
