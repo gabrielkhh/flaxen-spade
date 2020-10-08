@@ -163,6 +163,9 @@ pyparsing==2.4.7 \
 pytest==6.1.1 \
     --hash=sha256:7a8190790c17d79a11f847fba0b004ee9a8122582ebff4729a082c109e81a4c9 \
     --hash=sha256:8f593023c1a0f916110285b6efd7f99db07d59546e3d8c36fc60e2ab05d3be92
+pytest-flask==1.0.0 \
+    --hash=sha256:4d5678a045c07317618d80223ea124e21e8acc89dae109542dd1fdf6783d96c2 \
+    --hash=sha256:44948d3feab48c69e89b087129cc4db66bad9cb5aa472c08dfc798c69f4eac67
 python-dateutil==2.8.1 \
     --hash=sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c \
     --hash=sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a
