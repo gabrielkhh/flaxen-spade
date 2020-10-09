@@ -34,18 +34,19 @@ reader = JsonLoader()
 # Root is pinned to raw_datasets/
 # This means your provided path should be relative to that directory
 stops = reader.load_file("static/stops.json")
+stops["10009"]["name"] # Bt Merah Int
 ```
 
 ### CsvLoader
 ```python
 from koro.dataset import CsvLoader
 
-reader = CsvLoader()
-# Or a list of custom headers. This affects the key you'll access the CSV
-# reader = CsvLoader(['year_month']) 
-entries = reader.load_file("relative-path.csv")
+# You can usually leave out the delimiter if you're working with comma separated values
+# odd ones like some of the LTA datasets use \t for some files
+reader = CsvLoader(delimiter=",")
+entries = reader.load_file("merged/train-data.csv")
 for entry in entries:
-    print(f"All taps: {entry['TAP_OUT_VOLUME']}")
+    print(entry["station_code"])
 ```
 
 ## Geo
