@@ -1,7 +1,7 @@
 
 ## Getting Started [![Build Status](https://travis-ci.com/ict1002-42/flaxen-spade.svg?token=BJzzpiVHKm2chRHcywxY&branch=master)](https://travis-ci.com/ict1002-42/flaxen-spade)
+### Clone repo
 `git clone https://github.com/ict1002-42/flaxen-spade`
-
 
 ### Installing dependencies
 #### With Poetry
@@ -11,9 +11,17 @@
 `pip install -r requirements.txt`
 
 ### Dev
-- `poetry shell` (If you aren't in an venv  already.)
 - `cp .env.example .env` (secrets and config goes here)
-- `flask run`
+- `python -m flask run`
+
+### Making changes
+Checkout [Github's guide](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request). Don't push changes to master directly.
+
+Essentially:
+- Make sure you're in your own branch
+- Make sure it's up to date with the latest changes
+- Write code/Make changes
+- Create a pull request, from your branch to master.
 
 # How-tos
 
@@ -23,8 +31,10 @@ This ensures you'll always referencing the same files regardless of your current
 from koro.manipulation import dataset_path
 
 # Returns a fully qualified path to "raw_datasets/large/origin_destination_bus_202006.csv"
-dataset_path("large/origin_destination_bus_202006.csv")
-dataset_path("large", "origin_destination_bus_202006.csv") # ditto
+full_path = dataset_path("large/origin_destination_bus_202006.csv")
+full_path_too = dataset_path("large", "origin_destination_bus_202006.csv") # ditto
+with open(full_path) as file:
+    # ...
 ```
 
 ## Parsing files
