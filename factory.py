@@ -6,7 +6,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 
 from backend.api import api
 from cache import cache
-from cli import cli, merge
+from cli import cli, merge, t
 from frontend.index import app as frontend
 
 logging.config.dictConfig(
@@ -42,6 +42,7 @@ def create_app():
     app.register_blueprint(api, url_prefix="/api")
     app.register_blueprint(cli)
     app.register_blueprint(merge)
+    app.register_blueprint(t)
 
     @app.errorhandler(404)
     def not_found(error):
