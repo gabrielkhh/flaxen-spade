@@ -53,6 +53,7 @@ for entry in entries:
 ```python
 from koro.geo import haversine
 
+# Latitude, Longitude
 location1 = (25.0010, 136.9987)
 location2 = (25.0, 71.0)
 in_kilometers = haversine(location1, location2)
