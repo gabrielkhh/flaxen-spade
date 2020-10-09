@@ -14,6 +14,8 @@
 - `cp .env.example .env` (secrets and config goes here)
 - `python -m flask run`
 
+Checkout the [developing](DEVELOP.md) guide for more detail info about writing tasks.
+
 ## Making changes
 Checkout [Github's guide](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request). Don't push changes to master directly.
 
