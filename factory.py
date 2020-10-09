@@ -43,4 +43,8 @@ def create_app():
     app.register_blueprint(cli)
     app.register_blueprint(merge)
 
+    @app.errorhandler(404)
+    def not_found(error):
+        return f"404."
+
     return app
