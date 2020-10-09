@@ -18,10 +18,12 @@
 # How-tos
 
 ## Paths
+This ensures you'll always referencing the same files regardless of your current/script directory. You'll usually use it when writing results out.
 ```python
 from koro.manipulation import dataset_path
-# This ensures you'll always referencing the same files regardless of your current/script directory
-dataset_path("large/origin_destination_bus_202006.csv") # fully qualified path
+
+# Returns a fully qualified path to "raw_datasets/large/origin_destination_bus_202006.csv"
+dataset_path("large/origin_destination_bus_202006.csv")
 dataset_path("large", "origin_destination_bus_202006.csv") # ditto
 ```
 
@@ -31,7 +33,7 @@ dataset_path("large", "origin_destination_bus_202006.csv") # ditto
 from koro.dataset import JsonLoader
 
 reader = JsonLoader()
-# Root is pinned to raw_datasets/
+# Root is pinned to raw_datasets/ already
 # This means your provided path should be relative to that directory
 stops = reader.load_file("static/stops.json")
 stops["10009"]["name"] # Bt Merah Int
