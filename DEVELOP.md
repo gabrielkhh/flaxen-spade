@@ -20,7 +20,7 @@ Next, you'll need an entry point to your *task*. A simple [run()](https://github
 #### Register command
 Head to `cli.py` and something like this to the end of the file. What you'll do here is define the name of your command with the decorator (in this example, our command is testcommand). Next, we'll locally import your newly created file under commandbus and call the `run()` method we defined earlier.
 
-You'll be able to call this command by running `python -m flask task testcommand`.
+You'll be able to call this command by running `python -m flask task testcommand`. If you're having trouble running this command, make sure your dependencies are updated (`pip install -r requirements.txt`). If there's another type of error, let me know.
 
 ```python
 @t.cli.command("testcommand")
