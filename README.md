@@ -95,6 +95,14 @@ station.latitude # '1.333115'
 station.longitude # '103.742297'
 ```
 
+#### Combined Station codes
+Most of the datasets for train data contain "combined" train codes. You should split them with `.split()` and pass either one of them to `load_station`.
+
+```python
+ne_seven = "NE7/DT12".split("/")[0] # "NE7"
+dt_twelve = "NE7/DT12".split("/")[1] # "DT12"
+```
+
 ### Bus Arrivals
 ```python
 from koro.datamall import Datamall, Seat
