@@ -1,7 +1,7 @@
 
 ## Getting Started [![Build Status](https://travis-ci.com/ict1002-42/flaxen-spade.svg?token=BJzzpiVHKm2chRHcywxY&branch=master)](https://travis-ci.com/ict1002-42/flaxen-spade)
+### Clone repo
 `git clone https://github.com/ict1002-42/flaxen-spade`
-
 
 ### Installing dependencies
 #### With Poetry
@@ -11,18 +11,32 @@
 `pip install -r requirements.txt`
 
 ### Dev
-- `poetry shell` (If you aren't in an venv  already.)
 - `cp .env.example .env` (secrets and config goes here)
-- `flask run`
+- `python -m flask run`
+
+Checkout the [developing](DEVELOP.md) guide for more detail info about writing tasks.
+
+## Making changes
+Checkout [Github's guide](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request). Don't push changes to master directly.
+
+Essentially:
+- Make sure you're in your own branch
+- Make sure it's up to date with the latest changes
+- Write code/Make changes
+- Create a pull request, from your branch to master.
 
 # How-tos
 
 ## Paths
+This ensures you'll always referencing the same files regardless of your current/script directory. You'll usually use it when writing results out.
 ```python
 from koro.manipulation import dataset_path
-# This ensures you'll always referencing the same files regardless of your current/script directory
-dataset_path("large/origin_destination_bus_202006.csv") # fully qualified path
-dataset_path("large", "origin_destination_bus_202006.csv") # ditto
+
+# Returns a fully qualified path to "raw_datasets/large/origin_destination_bus_202006.csv"
+full_path = dataset_path("large/origin_destination_bus_202006.csv")
+full_path_too = dataset_path("large", "origin_destination_bus_202006.csv") # ditto
+with open(full_path) as file:
+    # ...
 ```
 
 ## Parsing files
@@ -31,21 +45,22 @@ dataset_path("large", "origin_destination_bus_202006.csv") # ditto
 from koro.dataset import JsonLoader
 
 reader = JsonLoader()
-# Root is pinned to raw_datasets/
+# Root is pinned to raw_datasets/ already
 # This means your provided path should be relative to that directory
 stops = reader.load_file("static/stops.json")
+stops["10009"]["name"] # Bt Merah Int
 ```
 
 ### CsvLoader
 ```python
 from koro.dataset import CsvLoader
 
-reader = CsvLoader()
-# Or a list of custom headers. This affects the key you'll access the CSV
-# reader = CsvLoader(['year_month']) 
-entries = reader.load_file("relative-path.csv")
+# You can usually leave out the delimiter if you're working with comma separated values
+# odd ones like some of the LTA datasets use \t for some files
+reader = CsvLoader(delimiter=",")
+entries = reader.load_file("merged/train-data.csv")
 for entry in entries:
-    print(f"All taps: {entry['TAP_OUT_VOLUME']}")
+    print(entry["station_code"])
 ```
 
 ## Geo
