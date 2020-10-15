@@ -66,6 +66,6 @@ import json
 
 # ... do some processing
 
-with open(dataset_path("results/my-results.json", "w+")) as file:
+with open(dataset_path("results/my-results.json"), "w+") as file:
    json.dump(my_dictionary_or_list_of_results, file)
 ```
