@@ -4,26 +4,33 @@
 `git clone https://github.com/ict1002-42/flaxen-spade`
 
 ### Installing dependencies
-#### With Poetry
-`poetry install`
-
-#### or pip
+#### Install dependencies
 `pip install -r requirements.txt`
 
-### Dev
+#### Initial Dev setup
 - `cp .env.example .env` (secrets and config goes here)
-- `python -m flask run`
+- `python -m flask run` - Run the web server
+- `python -m flask` - See available commands
+
+
+### Optional
+- `poetry shell` - Activate virtualenv
+- `flask konch` - Interactive REPL
 
 Checkout the [developing](DEVELOP.md) guide for more detail info about writing tasks.
 
 ## Making changes
 Checkout [Github's guide](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request). Don't push changes to master directly.
 
-Essentially:
+Essentially
 - Make sure you're in your own branch
 - Make sure it's up to date with the latest changes
 - Write code/Make changes
 - Create a pull request, from your branch to master.
+
+### Formatting code
+- `pip install black`
+- `python -m black .`
 
 # How-tos
 
@@ -158,7 +165,3 @@ service.stops # List (1st route, 2nd route if any), each containing an instance 
 service.points # List (1st route, 2nd route if any), each containing a tuple of (lat, long) (Used for passing to charting frontend)
 service.polyline # List of list of two floats [lat, long]. Used for passing to frontend rendering.
 ```
-
-## Formatting code
-- `pip install black`
-- `python -m black .`
