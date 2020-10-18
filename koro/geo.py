@@ -6,7 +6,6 @@ import requests as http
 
 from cache import cache
 from koro.dataset import CsvLoader, JsonLoader
-from koro.manipulation import first_true
 from koro.resolve import Stop, TrainStation
 
 Coordinate = Tuple[float, float]
