@@ -3,30 +3,22 @@
 ### Clone repo
 `git clone https://github.com/ict1002-42/flaxen-spade`
 
-### Installing dependencies
-#### Install dependencies
-`pip install -r requirements.txt`
-
 #### Initial Dev setup
+- `pip install -r requirements.txt` - Install dependencies
 - `cp .env.example .env` (secrets and config goes here)
 - `python -m flask run` - Run the web server
 - `python -m flask` - See available commands
-
 
 ### Optional
 - `poetry shell` - Activate virtualenv
 - `flask konch` - Interactive REPL
 
-Checkout the [developing](DEVELOP.md) guide for more detail info about writing tasks.
+Checkout the [workflow](FLOW.md) guide for more detail info about writing tasks. Checkout the [pull request](DEVELOP.md) guide for making changes.
 
-## Making changes
-Checkout [Github's guide](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request). Don't push changes to master directly.
-
-Essentially
-- Make sure you're in your own branch
-- Make sure it's up to date with the latest changes
-- Write code/Make changes
-- Create a pull request, from your branch to master.
+## Configuration
+`.env` stores your configurations. You can configure the datamall endpoint here.
+- https://dmall.mkb.moe (School wifi blocks this domain)
+- https://dmall.amatsuka.me 
 
 ### Formatting code
 - `pip install black`

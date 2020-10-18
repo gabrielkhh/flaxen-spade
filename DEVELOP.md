@@ -1,5 +1,5 @@
 ## Development Guide
-Before you do start writing any code
+For a more detailed guide, check out check out [Github's guide](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
 
 #### Saving Credentials
 Check out https://dirask.com/posts/Git-save-password-under-windows-gp52xj. The first method is preferred.
