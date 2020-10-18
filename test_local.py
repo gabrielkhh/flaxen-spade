@@ -1,9 +1,7 @@
 from os import path
 
 import pytest
-from flask.testing import FlaskClient
 
-from factory import create_app
 from koro.manipulation import dataset_path
 
 

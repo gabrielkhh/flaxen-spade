@@ -44,10 +44,13 @@ def merge_train():
 def my_test_command():
     """My task description"""
     from commandbus import my_first_task
+
     my_first_task.run()
+
 
 @t.cli.command("totaltapout")
 def total_tap_out():
     """Shows you total tap out count"""
     from commandbus.some_testing import run_test
+
     run_test()
