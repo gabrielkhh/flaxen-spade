@@ -1,7 +1,13 @@
+import operator
 from math import asin, cos, radians, sin, sqrt
-from typing import Dict, Tuple
+from typing import Dict, List, Tuple
 
 import requests as http
+
+from cache import cache
+from koro.dataset import CsvLoader, JsonLoader
+from koro.manipulation import first_true
+from koro.resolve import Stop, TrainStation
 
 Coordinate = Tuple[float, float]
 
@@ -34,6 +40,69 @@ def resolve_coordinates(location_name: str) -> Dict[str, float]:
     response = http.post(
         "https://places-dsn.algolia.net/1/places/query",
         json={"query": location_name, "language": "en", "countries": "sg"},
-    )
+    ).json()
 
-    return response.json()["hits"][0]["_geoloc"]
+    # Number of results
+    if response["nbHits"] <= 0:
+        raise ValueError("No results!")
+
+    return response["hits"][0]["_geoloc"]
+
+
+class Nearest:
+    def __init__(self):
+        self.latitude = None
+        self.longitude = None
+
+    def location(self, place) -> "Nearest":
+        coordinate = resolve_coordinates(place)
+        self.latitude = coordinate["lat"]
+        self.longitude = coordinate["lng"]
+
+        return self
+
+    def raw_location(self, latitude, longitude) -> "Nearest":
+        self.latitude = latitude
+        self.longitude = longitude
+
+        return self
+
+    def raise_if_empty(self):
+        if self.latitude is None and self.longitude is None:
+            raise ValueError(f"Empty coordinates!")
+
+    def get_location(self) -> Tuple[float, float]:
+        if self.latitude is None and self.longitude is None:
+            raise ValueError(f"Empty coordinates!")
+
+        return self.latitude, self.longitude
+
+    @cache.memoize()
+    def bus_stop(self, limit: float) -> List[Tuple[float, Stop]]:
+        stops = JsonLoader().load_file("static/stops.json")
+
+        matched_stops = [
+            (distance, Stop(code, stop))
+            for code, stop in stops.items()
+            if (distance := haversine(self.get_location(), (stop["lat"], stop["lng"])))
+            < limit
+        ]
+
+        return sorted(matched_stops, key=operator.itemgetter(0))
+
+    @cache.memoize()
+    def train_station(self, limit: float) -> List[Tuple[float, TrainStation]]:
+        stations = CsvLoader().load_file("merged/train-data.csv")
+
+        matched_stations = [
+            (distance, TrainStation(station))
+            for station in stations
+            if (
+                distance := haversine(
+                    self.get_location(), (float(station["lat"]), float(station["long"]))
+                )
+            )
+            < limit
+        ]
+
+        return sorted(matched_stations, key=operator.itemgetter(0))

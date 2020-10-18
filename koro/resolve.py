@@ -109,6 +109,10 @@ class TrainStation:
         self.line = payload["mrt_line"]
         self.latitude = payload["lat"]
         self.longitude = payload["long"]
+        self.payload = payload
+
+    def __repr__(self) -> str:
+        return json.dumps(self.payload)
 
 
 class TrainStationFactory:

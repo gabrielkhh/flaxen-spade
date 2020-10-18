@@ -80,6 +80,32 @@ from koro.geo import resolve_coordinates
 resolve_coordinates('changi airport') # {'lat': 1.3384, 'lng': 103.984}
 ```
 
+### Nearest
+```python
+from koro.geo import Nearest
+
+train = Nearest()
+
+# Get the closest train stations within 2km of this location
+list_of_trains = train.location("changi airport").train_station(limit=2) # sorted by distance, [0] = closest, [-1] furthest
+
+closest_train = list_of_trains[0] # Tuple of (distance_in_km, Instance of TrainStation)
+closest_train[0] # Distance in km
+closest_train[1].code # CG1
+closest_train[1].name # Changi Airport
+
+bus = Nearest()
+
+# You can pass in a raw lat/long instead
+list_of_buses = bus.raw_location(latitude, longitude)
+
+list_of_buses = bus.location("changi airport").bus_stop(0.5)
+closest_bus = list_of_buses[0] # Tuple of (distance_in_km, Instance of Stop)
+closest_train[0] # Distance in km
+closest_bus[1].name # Changi Airport PTB3
+closest_bus[1].stop_code # 95109
+```
+
 ## Transport
 ### Train Stations
 ```python
