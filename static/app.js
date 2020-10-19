@@ -13,6 +13,7 @@ Vue.component('mapper', {
             url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
             zoom: 12,
             center: [1.3521, 103.8198],
+            marker: null,
         };
     },
     methods: {
@@ -21,6 +22,12 @@ Vue.component('mapper', {
             this.map.fitBounds(this.busRoute);
         },
     },
+    created() {
+        bus.$on('view_on_map', stop => {
+            this.center = this.marker = [stop.lat, stop.lng];
+            this.zoom = 20;
+        });
+    },
 });
 
 Vue.component('bus-info', {
@@ -28,13 +35,13 @@ Vue.component('bus-info', {
     props: ['stops'],
     data() {
         return {
-            isOpen: - 1,
+            isOpen: -1,
         };
     },
     methods: {
         opening(index) {
             this.isOpen = index;
-            this.$emit("stop_carousel_open", index);
+            this.$emit('stop_carousel_open', index);
         },
     },
 });
@@ -49,24 +56,27 @@ Vue.component('bus-info-panel', {
     },
     methods: {
         opened(openedIndex) {
-            if (this.index !== openedIndex || ! this.isEmpty()) {
+            if (this.index !== openedIndex || !this.isEmpty()) {
                 return;
             }
 
-            axios.get(`/api/stop/${this.stop.stop_code}`)
-                 .then(response => {
-                     this.stopData = response.data;
-                 });
+            axios.get(`/api/stop/${this.stop.stop_code}`).then(response => {
+                this.stopData = response.data;
+            });
         },
         isEmpty() {
-            return Object.keys(this.stopData).length === 0
-        }
+            return Object.keys(this.stopData).length === 0;
+        },
+        viewOnMap() {
+            bus.$emit('view_on_map', this.stop);
+        },
     },
     created() {
-        this.$parent.$parent.$on("stop_carousel_open", this.opened);
+        this.$parent.$parent.$on('stop_carousel_open', this.opened);
     },
 });
 
+const bus = new Vue();
 
 const app = new Vue({
     el: '#app',

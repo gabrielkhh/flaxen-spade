@@ -10,6 +10,7 @@
                 @ready="boundMapRects"
         >
             <l-tile-layer :url="url"></l-tile-layer>
+            <l-marker v-if="marker" :lat-lng="marker"></l-marker>
             <l-polyline color="#121212" :lat-lngs="busRoute"></l-polyline>
             <template v-for="route in busStops">
                 <template v-for="point in route">
@@ -50,32 +51,33 @@
 <script type="text/x-template" id="bus-info-panel">
     <div class="card-content">
         <div class="content" v-if="isEmpty">
+            <span class="tag" @click="viewOnMap()"><i class="mdi mdi-magnify"></i></span>
             <section class="pt-1" v-for="(timings, service) of stopData">
-                <a :href="`/bus/stop/${service}`"> <span class="tag is-dark">{{ service }}</span></a>
+                <a :href="`/bus/stop/${service}`" class="tag is-dark">{{ service }}</a>
 
-                <div class="level">
-                    <div class="level-item has-text-centered">
+                <div class="level columns">
+                    <div class="level-item has-text-centered column is-one-third">
                         <div>
                             <p class="heading">Weekday</p>
                             <p class="title has-text-grey-dark">{{ timings.weekday.join(", ") }}</p>
                         </div>
                     </div>
-                    <div class="level-item has-text-centered">
+                    <div class="level-item has-text-centered column is-one-third">
                         <div>
                             <p class="heading">Saturday</p>
                             <p class="title has-text-grey-dark">{{ timings.saturday.join(", ") }}</p>
                         </div>
                     </div>
-                    <div class="level-item has-text-centered">
+                    <div class="level-item has-text-centered column is-one-third">
                         <div>
                             <p class="heading">Sunday</p>
                             <p class="title has-text-grey-dark">{{ timings.sunday.join(", ") }}</p>
                         </div>
                     </div>
                 </div>
+                <hr class="divider">
+            </section>
         </div>
-
-    </div>
     </div>
 </script>
 {% endraw %}

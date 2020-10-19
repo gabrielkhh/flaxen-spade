@@ -93,3 +93,7 @@ nav.navbar {
 .leaflet-container {
     z-index: 1;
 }
+
+.mdi.mdi-magnify:hover {
+    cursor: pointer;
+}
