@@ -1,5 +1,5 @@
 
-## Getting Started
+## Getting Started [![Build Status](https://github.com/ict1002-42/flaxen-spade/workflows/Flask/badge.svg?branch=master)](https://github.com/ict1002-42/flaxen-spade/actions)
 ### Clone repo
 `git clone https://github.com/ict1002-42/flaxen-spade`
 
