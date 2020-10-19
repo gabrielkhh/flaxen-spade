@@ -1,5 +1,5 @@
 #!/bin/sh
 
-mypy --ignore-missing-imports .
-black .
-isort --profile black .
+python -m mypy --ignore-missing-imports .
+python -m black .
+python -m isort --profile black .
