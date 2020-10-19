@@ -51,7 +51,7 @@
 <script type="text/x-template" id="bus-info-panel">
     <div class="card-content">
         <div class="content" v-if="isEmpty">
-            <span class="tag" @click="viewOnMap()"><i class="mdi mdi-magnify"></i></span>
+            <span class="tag" @click="viewOnMap"><i class="mdi mdi-magnify"></i></span>
             <section class="pt-1" v-for="(timings, service) of stopData">
                 <a :href="`/bus/stop/${service}`" class="tag is-dark">{{ service }}</a>
 

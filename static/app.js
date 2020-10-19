@@ -76,6 +76,40 @@ Vue.component('bus-info-panel', {
     },
 });
 
+Vue.component('charty', {
+    extends: VueChartJs.Bar,
+    data() {
+        return {
+            charting: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [
+                    {
+                        label: 'バスどこ',
+                        backgroundColor: '#f87979',
+                        data: [12, 19, 3, 5, 2, 3],
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [
+                        {
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        },
+                    ],
+                },
+            },
+        };
+    },
+    mounted() {
+        this.renderChart(this.charting, this.options);
+    },
+});
+
 const bus = new Vue();
 
 const app = new Vue({
