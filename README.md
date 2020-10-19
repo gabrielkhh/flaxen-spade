@@ -13,7 +13,9 @@
 - `poetry shell` - Activate virtualenv
 - `flask konch` - Interactive REPL
 
-Checkout the [workflow](FLOW.md) guide for more detail info about writing tasks. Checkout the [pull request](DEVELOP.md) guide for making changes.
+## Guides
+- [Workflows](FLOW.md): detailed info about writing tasks.
+- [Making Changes](DEVELOP.md): Guide to making changes and PRs.
 
 ## Configuration
 `.env` stores your configurations. You can configure the datamall endpoint here.
