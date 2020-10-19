@@ -1,7 +1,7 @@
 {% raw %}
-<script type="text/x-template" id="tested">
+<script type="text/x-template" id="mapper">
     <div style="height: 800px;">
-        <h1 class="title">Bus: {{ service }}</h1>
+        <h1 class="title">Service: {{ service }}</h1>
         <l-map
                 style="height: 80%; width: 100%"
                 :zoom="zoom"
@@ -10,13 +10,72 @@
                 @ready="boundMapRects"
         >
             <l-tile-layer :url="url"></l-tile-layer>
-            <l-polyline :lat-lngs="busRoute"></l-polyline>
+            <l-polyline color="#121212" :lat-lngs="busRoute"></l-polyline>
             <template v-for="route in busStops">
                 <template v-for="point in route">
-                    <l-circle-marker :radius="3" color="#e817a2" :lat-lng="point"></l-circle-marker>
+                    <l-circle-marker :stroke="false" :fill-opacity="1.0" :radius="5" fill-color="#D85DA6" :lat-lng="point">
+                        <l-tooltip>{{ point.stop_code }}: {{ point.name }}</l-tooltip>
+                    </l-circle-marker>
                 </template>
             </template>
         </l-map>
+    </div>
+</script>
+<script type="text/x-template" id="bus-info">
+    <section>
+        <b-collapse
+                class="card"
+                animation="slide"
+                v-for="(stop, index) of stops"
+                :key="index"
+                :open="false"
+                @open="opening(index)">
+            <div
+                    slot="trigger"
+                    slot-scope="props"
+                    class="card-header"
+                    role="button">
+                <p class="card-header-title">
+                    {{ stop.name }}
+                </p>
+                <a class="card-header-icon">
+                    <b-icon :icon="props.open ? 'menu-up' : 'menu-down'"></b-icon>
+                </a>
+            </div>
+            <bus-info-panel ref="bus-panel" :stop="stop" :index="index"></bus-info-panel>
+        </b-collapse>
+    </section>
+</script>
+
+<script type="text/x-template" id="bus-info-panel">
+    <div class="card-content">
+        <div class="content" v-if="isEmpty">
+            <section class="pt-1" v-for="(timings, service) of stopData">
+                <a :href="`/bus/stop/${service}`"> <span class="tag is-dark">{{ service }}</span></a>
+
+                <div class="level">
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Weekday</p>
+                            <p class="title has-text-grey-dark">{{ timings.weekday.join(", ") }}</p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Saturday</p>
+                            <p class="title has-text-grey-dark">{{ timings.saturday.join(", ") }}</p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Sunday</p>
+                            <p class="title has-text-grey-dark">{{ timings.sunday.join(", ") }}</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+    </div>
     </div>
 </script>
 {% endraw %}

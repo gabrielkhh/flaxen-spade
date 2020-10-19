@@ -8,8 +8,9 @@ from koro.dataset import CsvLoader, JsonLoader
 from koro.manipulation import first_true
 
 
-class Stop:
+class Stop(dict):
     def __init__(self, stop_code: str, stop_data: Dict):
+        super().__init__(stop_data, stop_code=stop_code)
         self.stop_code = stop_code
         self.stop_data = stop_data
 
@@ -76,20 +77,24 @@ class BusService:
         return self.resolved_stop_coordinates
 
     @property
-    def polyline(self) -> List[List[float]]:
+    def polyline(self) -> List[List[List[float]]]:
         try:
             loaded = JsonLoader().load_file(
                 f"static/routes/mytransportsg/{self.bus_service_code}.json"
-            )[0]
+            )
         except FileNotFoundError:
             try:
                 loaded = JsonLoader().load_file(
                     f"static/routes/onemapsg/{self.bus_service_code}.json"
-                )[0]
+                )
             except FileNotFoundError as e:
                 raise e
 
-        return list(map(lambda point: [point[1], point[0]], loaded))
+        routes = []
+        for route in loaded:
+            routes.append(list(map(lambda point: [point[1], point[0]], route)))
+
+        return routes
 
 
 class BusServiceFactory:

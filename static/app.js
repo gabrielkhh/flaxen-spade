@@ -3,9 +3,10 @@ Vue.component('l-tile-layer', window.Vue2Leaflet.LTileLayer);
 Vue.component('l-marker', window.Vue2Leaflet.LMarker);
 Vue.component('l-circle-marker', window.Vue2Leaflet.LCircleMarker);
 Vue.component('l-polyline', window.Vue2Leaflet.LPolyline);
+Vue.component('l-tooltip', window.Vue2Leaflet.LTooltip);
 
 Vue.component('mapper', {
-    template: '#tested',
+    template: '#mapper',
     props: ['service', 'busStops', 'busRoute'],
     data() {
         return {
@@ -21,6 +22,51 @@ Vue.component('mapper', {
         },
     },
 });
+
+Vue.component('bus-info', {
+    template: '#bus-info',
+    props: ['stops'],
+    data() {
+        return {
+            isOpen: - 1,
+        };
+    },
+    methods: {
+        opening(index) {
+            this.isOpen = index;
+            this.$emit("stop_carousel_open", index);
+        },
+    },
+});
+
+Vue.component('bus-info-panel', {
+    template: '#bus-info-panel',
+    props: ['stop', 'index'],
+    data() {
+        return {
+            stopData: {},
+        };
+    },
+    methods: {
+        opened(openedIndex) {
+            if (this.index !== openedIndex || ! this.isEmpty()) {
+                return;
+            }
+
+            axios.get(`/api/stop/${this.stop.stop_code}`)
+                 .then(response => {
+                     this.stopData = response.data;
+                 });
+        },
+        isEmpty() {
+            return Object.keys(this.stopData).length === 0
+        }
+    },
+    created() {
+        this.$parent.$parent.$on("stop_carousel_open", this.opened);
+    },
+});
+
 
 const app = new Vue({
     el: '#app',

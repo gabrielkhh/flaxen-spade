@@ -13,8 +13,13 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/bus/<service>")
+@app.route("/bus/service/<service>")
 def bus_service(service):
     service = BusServiceFactory.load_service(service.upper())
 
-    return render_template("services.html", service=service)
+    return render_template("bus/service.html", service=service)
+
+
+@app.route("/bus/stop/<stop>")
+def bus_stop(stop):
+    pass

@@ -181,5 +181,5 @@ service = BusServiceFactory.load_service("812")
 service.bus_service_code # 812
 service.stops # List (1st route, 2nd route if any), each containing an instance of "Stop" (see above)
 service.points # List (1st route, 2nd route if any), each containing a tuple of (lat, long) (Used for passing to charting frontend)
-service.polyline # List of list of two floats [lat, long]. Used for passing to frontend rendering.
+service.polyline # List of list of a List two floats [lat, long]. Used for passing to frontend rendering.
 ```
