@@ -9,6 +9,7 @@ NS8,Marsiling,North South Line,1.432542,103.774216
 NS9,Woodlands,North South Line,1.437388,103.787675
 NS10,Admiralty,North South Line,1.440637,103.800959
 NS11,Sembawang,North South Line,1.449093,103.820056
+NS12,Canberra,North South Line,1.443369,103.829502
 NS13,Yishun,North South Line,1.429384,103.835028
 NS14,Khatib,North South Line,1.417316,103.832998
 NS15,Yio Chu Kang,North South Line,1.38178,103.844965
@@ -182,3 +183,6 @@ PW4,Samudera,Punggol LRT,1.415976,103.90219
 PW5,Nibong,Punggol LRT,1.411831,103.900305
 PW6,Sumang,Punggol LRT,1.408532,103.898534
 PW7,Soo Teck,Punggol LRT,1.405394,103.897237
+TE3,Woodlands South,Thomson-East Coast Line,1.427145,103.794295
+TE1,Woodlands North,Thomson-East Coast Line,1.448646,103.785519
+TE2,Woodlands,Thomson-East Coast Line,1.437388,103.787675

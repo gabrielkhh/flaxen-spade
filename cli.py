@@ -54,3 +54,10 @@ def total_tap_out():
     from commandbus.some_testing import run_test
 
     run_test()
+
+@t.cli.command("mall-traffic")
+def total_tap_out():
+    """Outputs volume of people entering various shopping malls by using data from MRT stations that are in near proximity to a shopping mall."""
+    from commandbus.shopping_mall_traffic import mall_traffic
+
+    mall_traffic()
