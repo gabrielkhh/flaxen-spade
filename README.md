@@ -1,5 +1,5 @@
 
-## Getting Started [![Build Status](https://travis-ci.com/ict1002-42/flaxen-spade.svg?token=BJzzpiVHKm2chRHcywxY&branch=master)](https://travis-ci.com/ict1002-42/flaxen-spade)
+## Getting Started
 ### Clone repo
 `git clone https://github.com/ict1002-42/flaxen-spade`
 
