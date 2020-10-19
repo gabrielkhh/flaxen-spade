@@ -24,4 +24,4 @@ jobs:
           python -m pytest
       - name: Run linters
         run: |
-          ./lint.sh
+          python -m mypy --ignore-missing-imports --pretty --scripts-are-modules .
