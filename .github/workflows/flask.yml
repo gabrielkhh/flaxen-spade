@@ -22,3 +22,6 @@ jobs:
       - name: Unit tests
         run: |
           python -m pytest
+      - name: Run linters
+        run: |
+          ./lint.sh
