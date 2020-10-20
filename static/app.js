@@ -21,11 +21,14 @@ Vue.component('mapper', {
             this.map = this.$refs.leafmap.mapObject;
             this.map.fitBounds(this.busRoute);
         },
+        zoomAfterUpdate() {
+            this.zoom = 20;
+        },
     },
     created() {
         bus.$on('view_on_map', stop => {
             this.center = this.marker = [stop.lat, stop.lng];
-            this.zoom = 20;
+            this.$refs.leafmap.$once('update:center', this.zoomAfterUpdate);
         });
     },
 });
