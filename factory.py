@@ -31,7 +31,10 @@ logging.config.dictConfig(
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_mapping(SECRET_KEY="JtgKOSZ3fleZu7pDm9hI0Kkf4OnGjVE1l1+hDRecNnU=", DEBUG_TB_PROFILER_ENABLED=True)
+    app.config.from_mapping(
+        SECRET_KEY="JtgKOSZ3fleZu7pDm9hI0Kkf4OnGjVE1l1+hDRecNnU=",
+        DEBUG_TB_PROFILER_ENABLED=True,
+    )
 
     cache.init_app(app)
     toolbar = DebugToolbarExtension()
