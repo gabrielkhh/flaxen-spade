@@ -1,12 +1,12 @@
 from enum import Enum, auto
 from os import getenv
-from typing import Dict, Tuple
+from typing import Dict, List, Tuple
 
 import pendulum
 from requests_toolbelt import sessions
 
 from koro.manipulation import first_true
-from koro.resolve import Stop, StopFactory
+from koro.resolve import BusService, BusServiceFactory, Stop, StopFactory
 
 
 class Seat(Enum):
@@ -60,10 +60,26 @@ class Arrived:
         :param index:
         :return: Instance of pendulum
         """
-        return pendulum.parse(self.get_bus_by_key(index)["EstimatedArrival"])
+        if (arriving := self.get_bus_by_key(index)["EstimatedArrival"]) is None:
+            raise ValueError(
+                "No arrival timing available. (You're working too late or it's an interchange)"
+            )
+
+        return pendulum.parse(arriving)
 
     def get_friendly_arrival(self, index=0) -> str:
-        return self.get_arrival(index).diff_for_humans()
+        try:
+            return self.get_arrival(index).diff_for_humans()
+        except ValueError:
+            return "N/A"
+
+    @property
+    def service_code(self) -> str:
+        return self.payload["ServiceNo"]
+
+    @property
+    def service(self) -> BusService:
+        return BusServiceFactory.load_service(self.service_code)
 
     @property
     def origin(self) -> Stop:
@@ -81,6 +97,15 @@ class Arrived:
     def arriving_at(self) -> str:
         return self.get_friendly_arrival()
 
+    def __repr__(self):
+        return {
+            "is_wab": self.is_wheelchair_accessible(),
+            "orign": self.origin,
+            "destination": self.destination,
+            "arriving": self.arriving,
+            "arriving_at": self.arriving_at,
+        }
+
 
 class Arrivals:
     def __init__(self, payload):
@@ -89,6 +114,12 @@ class Arrivals:
     @property
     def bus_stop_code(self) -> str:
         return self.payload["BusStopCode"]
+
+    def all(self) -> List[Arrived]:
+        return list(map(Arrived, self.payload["Services"]))
+
+    def get_stop(self) -> Stop:
+        return StopFactory.load_stop(self.bus_stop_code)
 
     def get_service(self, service_number) -> Arrived:
         """
