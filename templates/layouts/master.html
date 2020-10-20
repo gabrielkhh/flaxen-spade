@@ -6,9 +6,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.3.45/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css">
-    <link rel="stylesheet" href="//unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
-    <title>flaxen.</title>
+    <link rel="stylesheet" href="//unpkg.com/leaflet/dist/leaflet.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}"/>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}"/>
+    <title>lin :: {% block title %}{% endblock %}</title>
 </head>
 <body>
 <div id="app">
