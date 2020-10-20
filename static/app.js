@@ -30,6 +30,24 @@ Vue.component('mapper', {
     },
 });
 
+Vue.component('stop-map', {
+    template: '#stop-map',
+    props: ['stop', 'mark'],
+    data() {
+        return {
+            url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            zoom: 20,
+            center: this.mark,
+            marker: this.mark,
+        };
+    },
+    methods: {
+        boundMapRects() {
+            this.map = this.$refs.leafstopmap.mapObject;
+        },
+    },
+});
+
 Vue.component('bus-info', {
     template: '#bus-info',
     props: ['stops'],

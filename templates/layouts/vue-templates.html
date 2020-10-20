@@ -1,9 +1,8 @@
 {% raw %}
 <script type="text/x-template" id="mapper">
-    <div style="height: 800px;">
-        <h1 class="title">Service: {{ service }}</h1>
+    <div style="height: 600px;">
         <l-map
-                style="height: 80%; width: 100%"
+                style="width: 100%"
                 :zoom="zoom"
                 :center="center"
                 ref="leafmap"
@@ -19,6 +18,22 @@
                     </l-circle-marker>
                 </template>
             </template>
+        </l-map>
+    </div>
+</script>
+<script type="text/x-template" id="stop-map">
+    <div style="height: 600px;">
+        <l-map
+                style="width: 100%"
+                :zoom="zoom"
+                :center="center"
+                ref="leafstopmap"
+                @ready="boundMapRects"
+        >
+            <l-tile-layer :url="url"></l-tile-layer>
+            <l-marker v-if="marker" :lat-lng="marker">
+                <l-tooltip>{{ stop.name }}</l-tooltip>
+            </l-marker>
         </l-map>
     </div>
 </script>
@@ -51,24 +66,27 @@
 <script type="text/x-template" id="bus-info-panel">
     <div class="card-content">
         <div class="content" v-if="isEmpty">
-            <span class="tag" @click="viewOnMap"><i class="mdi mdi-magnify"></i></span>
+            <div class="tags has-addons">
+                <a :href="`/bus/stop/${stop.stop_code}`" class="tag is-dark">Stop</a>
+                <span class="tag" @click="viewOnMap"><i class="mdi mdi-magnify"></i></span>
+            </div>
             <section class="pt-1" v-for="(timings, service) of stopData">
-                <a :href="`/bus/stop/${service}`" class="tag is-dark">{{ service }}</a>
+                <a :href="`/bus/service/${service}`" class="tag is-dark">{{ service }}</a>
 
-                <div class="level columns">
-                    <div class="level-item has-text-centered column is-one-third">
+                <div class="levels columns">
+                    <div class="level-item has-text-centered column">
                         <div>
                             <p class="heading">Weekday</p>
                             <p class="title has-text-grey-dark">{{ timings.weekday.join(", ") }}</p>
                         </div>
                     </div>
-                    <div class="level-item has-text-centered column is-one-third">
+                    <div class="level-item has-text-centered column">
                         <div>
                             <p class="heading">Saturday</p>
                             <p class="title has-text-grey-dark">{{ timings.saturday.join(", ") }}</p>
                         </div>
                     </div>
-                    <div class="level-item has-text-centered column is-one-third">
+                    <div class="level-item has-text-centered column">
                         <div>
                             <p class="heading">Sunday</p>
                             <p class="title has-text-grey-dark">{{ timings.sunday.join(", ") }}</p>

@@ -1,0 +1,64 @@
+{% extends 'layouts/master.html' %}
+{% block content %}
+    <div class="column is-12">
+        <section>
+            <h1 class="title">Stop: {{ stop.name }} ({{ stop.stop_code }})</h1>
+            <p class="subtitle">({{ stop.latitude ~ ", " ~ stop.longitude }})</p>
+            <stop-map :stop='{{ stop|tojson }}' :mark="[{{ stop.latitude }}, {{ stop.longitude }}]"></stop-map>
+        </section>
+
+        <hr class="divider">
+        <section class="pb-4">
+            {% for service in services %}
+                <div class="levels columns">
+                    <div class="level-item has-text-centered column is-3">
+                        <div class="level-left">
+                            <a href="{{ url_for("frontend.bus_service", service=service.service_code) }}" class="title has-text-grey-dark">{{ service.service_code }}</a>
+
+                        </div>
+                        <div class="level-left">
+                            <b-field grouped group-multiline>
+                                <div class="control">
+                                    <b-taglist>
+                                        {% if service.is_wheelchair_accessible %}
+                                            <b-tag type="is-success">WAB</b-tag>
+                                        {% else %}
+                                            <b-tag type="is-danger">Not WAB</b-tag>
+                                        {% endif %}
+                                    </b-taglist>
+                                </div>
+                                <div class="control">
+                                    <b-taglist attached>
+                                        <b-tag type="is-primary">Origin</b-tag>
+                                        <b-tag>
+                                            <a href="{{ url_for("frontend.bus_stop", stop=service.origin.stop_code) }}">
+                                                {{ service.origin.name }}
+                                            </a>
+                                        </b-tag>
+                                    </b-taglist>
+                                    <b-taglist attached>
+                                        <b-tag type="is-primary">Destination</b-tag>
+                                        <b-tag>
+                                            <a href="{{ url_for("frontend.bus_stop", stop=service.destination.stop_code) }}">
+                                                {{ service.destination.name }}
+                                            </a>
+                                        </b-tag>
+                                    </b-taglist>
+                                </div>
+                            </b-field>
+                        </div>
+                    </div>
+                    {% for bus in range(3) %}
+                        <div class="level-item has-text-centered column">
+                            <div>
+                                <b-tag class="heading" type="is-primary" size="is-small">Bus {{ bus + 1 }}</b-tag>
+                                <p class="title has-text-grey-dark">{{ service.get_friendly_arrival(bus) }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <hr class="divider">
+            {% endfor %}
+        </section>
+    </div>
+{% endblock %}

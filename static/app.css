@@ -97,3 +97,7 @@ nav.navbar {
 .mdi.mdi-magnify:hover {
     cursor: pointer;
 }
+
+.tags:not(:last-child) {
+    margin-bottom: 0;
+}

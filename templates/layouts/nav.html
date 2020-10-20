@@ -5,7 +5,7 @@
     <template slot="start">
         <b-navbar-item href="{{ url_for("frontend.index") }}">/</b-navbar-item>
         <b-navbar-dropdown label="Bus">
-            <b-navbar-item href="#">Services</b-navbar-item>
+            <b-navbar-item href="{{ url_for("frontend.bus_index") }}">Services</b-navbar-item>
             <b-navbar-item href="#">Stops</b-navbar-item>
             <hr class="navbar-divider">
             <b-navbar-item></b-navbar-item>
