@@ -1,6 +1,6 @@
 import operator
 from math import asin, cos, radians, sin, sqrt
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Union
 
 import requests as http
 
@@ -76,14 +76,20 @@ class Nearest:
 
         return self.latitude, self.longitude
 
+    def is_within_limit(self, latitude, longitude, limit) -> Union[bool, float]:
+        distance = haversine(self.get_location(), (latitude, longitude))
+        if distance < limit:
+            return distance
+
+        return False
+
     def bus_stop(self, limit: float) -> List[Tuple[float, Stop]]:
         stops = JsonLoader().load_file("static/stops.json")
 
         matched_stops = [
             (distance, Stop(code, stop))
             for code, stop in stops.items()
-            if (distance := haversine(self.get_location(), (stop["lat"], stop["lng"])))
-            < limit
+            if (distance := self.is_within_limit(stop["lat"], stop["lng"], limit))
         ]
 
         return sorted(matched_stops, key=operator.itemgetter(0))
@@ -95,11 +101,10 @@ class Nearest:
             (distance, TrainStation(station))
             for station in stations
             if (
-                distance := haversine(
-                    self.get_location(), (float(station["lat"]), float(station["long"]))
+                distance := self.is_within_limit(
+                    float(station["lat"]), float(station["long"]), limit
                 )
             )
-            < limit
         ]
 
         return sorted(matched_stations, key=operator.itemgetter(0))
