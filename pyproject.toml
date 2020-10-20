@@ -25,6 +25,7 @@ wheel = "^0.35.1"
 pytest-flask = "^1.0.0"
 uwsgi = "^2.0.19"
 jsonpickle = "^1.4.1"
+tabulate = "^0.8.7"
 
 [tool.poetry.dev-dependencies]
 
