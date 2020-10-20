@@ -2,15 +2,28 @@
 {% block content %}
     <div class="column is-12">
         <section>
-            <h1 class="title">Stop: {{ stop.name }} ({{ stop.stop_code }})</h1>
-            <p class="subtitle">({{ stop.latitude ~ ", " ~ stop.longitude }})</p>
+            <h1 class="title mb-1">{{ stop.name }} ({{ stop.stop_code }})</h1>
+            <b-field grouped>
+                <div class="control">
+                    <b-taglist attached>
+                        <b-tag class="is-primary">Latitude</b-tag>
+                        <b-tag type="is-dark">{{ stop.latitude }}</b-tag>
+                    </b-taglist>
+                </div>
+                <div class="control">
+                    <b-taglist attached>
+                        <b-tag class="is-primary">Longitude</b-tag>
+                        <b-tag type="is-dark">{{ stop.longitude }}</b-tag>
+                    </b-taglist>
+                </div>
+            </b-field>
             <stop-map :stop='{{ stop|tojson }}' :mark="[{{ stop.latitude }}, {{ stop.longitude }}]"></stop-map>
         </section>
 
         <hr class="divider">
         <section class="pb-4">
             {% for service in services %}
-                <div class="levels columns">
+                <div class="levels columns is-vcentered">
                     <div class="level-item has-text-centered column is-3">
                         <div class="level-left">
                             <a href="{{ url_for("frontend.bus_service", service=service.service_code) }}" class="title has-text-grey-dark">{{ service.service_code }}</a>
@@ -26,8 +39,6 @@
                                             <b-tag type="is-danger">Not WAB</b-tag>
                                         {% endif %}
                                     </b-taglist>
-                                </div>
-                                <div class="control">
                                     <b-taglist attached>
                                         <b-tag type="is-primary">Origin</b-tag>
                                         <b-tag>
@@ -44,6 +55,7 @@
                                             </a>
                                         </b-tag>
                                     </b-taglist>
+
                                 </div>
                             </b-field>
                         </div>

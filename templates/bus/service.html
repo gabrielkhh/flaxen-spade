@@ -1,20 +1,41 @@
 {% extends 'layouts/master.html' %}
 {% block content %}
     <div class="column is-12">
-        <section>
+        <section class="pb-2">
+            <h1 class="title mb-1">{{ service.bus_service_code }}</h1>
+            <b-field grouped>
+                <div class="control">
+                    <b-taglist attached>
+                        <b-tag class="is-primary">Routes</b-tag>
+                        <b-tag type="is-dark">{{ service.stops|length }}</b-tag>
+                    </b-taglist>
+                </div>
+                {% for stop in service.stops %}
+                    <div class="control">
+                        <b-taglist attached>
+                            <b-tag class="is-info">Route {{ loop.index }}</b-tag>
+                            <b-tag type="is-light"><a href="#route{{ loop.index }}">{{ stop|length }}</a></b-tag>
+                        </b-taglist>
+                    </div>
+                {% endfor %}
+            </b-field>
+        </section>
+        <section class="pb-4">
             <mapper service='{{ service.bus_service_code }}'
                     :bus-stops='{{ service.stops|tojson }}'
                     :bus-route='{{ service.polyline|tojson }}'
             ></mapper>
         </section>
-        <hr class="divider">
-        {% for route in service.stops %}
-            <section class="pb-1">
-                <h1 class="title">
-                    Route {{ loop.index }}
-                </h1>
-                <bus-info :stops='{{ route|tojson }}'></bus-info>
-            </section>
-        {% endfor %}
+        <section class="pb-1 columns">
+            {% for route in service.stops %}
+                <div class="column">
+                    <h1 class="title" id="route{{ loop.index }}">
+                        Route {{ loop.index }}
+                    </h1>
+                    <bus-info :stops='{{ route|tojson }}'></bus-info>
+                    <hr class="divider">
+                </div>
+            {% endfor %}
+        </section>
     </div>
 {% endblock %}
