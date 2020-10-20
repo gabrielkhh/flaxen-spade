@@ -76,7 +76,6 @@ class Nearest:
 
         return self.latitude, self.longitude
 
-    @cache.memoize()
     def bus_stop(self, limit: float) -> List[Tuple[float, Stop]]:
         stops = JsonLoader().load_file("static/stops.json")
 
@@ -89,7 +88,6 @@ class Nearest:
 
         return sorted(matched_stops, key=operator.itemgetter(0))
 
-    @cache.memoize()
     def train_station(self, limit: float) -> List[Tuple[float, TrainStation]]:
         stations = CsvLoader().load_file("merged/train-data.csv")
 
