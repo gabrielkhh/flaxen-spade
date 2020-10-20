@@ -24,6 +24,7 @@ requests-toolbelt = "^0.9.1"
 wheel = "^0.35.1"
 pytest-flask = "^1.0.0"
 uwsgi = "^2.0.19"
+jsonpickle = "^1.4.1"
 
 [tool.poetry.dev-dependencies]
 
