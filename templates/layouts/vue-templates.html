@@ -66,14 +66,22 @@
 <script type="text/x-template" id="bus-info-panel">
     <div class="card-content">
         <div class="content" v-if="isEmpty">
-            <div class="tags has-addons">
-                <a :href="`/bus/stop/${stop.stop_code}`" class="tag is-dark">Stop</a>
-                <span class="tag" @click="viewOnMap"><i class="mdi mdi-magnify"></i></span>
-            </div>
-            <section class="pt-1" v-for="(timings, service) of stopData">
-                <a :href="`/bus/service/${service}`" class="tag is-dark">{{ service }}</a>
+            <b-field grouped>
+                <div class="control">
+                    <b-taglist attached>
+                        <b-tag><a :href="`/bus/stop/${stop.stop_code}`" type="is-dark">Stop</a></b-tag>
+                        <b-tag><i @click="viewOnMap" class="mdi mdi-magnify"></i></b-tag>
+                    </b-taglist>
+                </div>
 
+            </b-field>
+            <section class="pt-1" v-for="(timings, service) of stopData">
                 <div class="levels columns">
+                    <div class="control">
+                        <b-taglist>
+                            <b-tag><a :href="`/bus/service/${service}`">{{ service }}</a></b-tag>
+                        </b-taglist>
+                    </div>
                     <div class="level-item has-text-centered column">
                         <div>
                             <p class="heading">Weekday</p>
