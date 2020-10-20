@@ -10,7 +10,7 @@ Make sure you have the latest commits
 - `git rebase origin/master`
 
 or the one liner (equivalent to the above)
-- `git pull --rebase`
+- `git pull --rebase origin master`
 
 Make sure your dependencies are updated
 - `pip install -r requirements.txt`
