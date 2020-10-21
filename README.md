@@ -115,19 +115,12 @@ from koro.resolve import TrainStationFactory
 
 # Case insensitive
 station = TrainStationFactory.load_station("NS1") # an instance of TrainStation
+station = TrainStationFactory.load_station("NS1/NE1") # or the combined format
 station.code # NS1
 station.name # Jurong East
 station.line # North South Line
 station.latitude # '1.333115'
 station.longitude # '103.742297'
-```
-
-#### Combined Station codes
-Most of the datasets for train data contain "combined" train codes. You should split them with `.split()` and pass either one of them to `load_station`.
-
-```python
-ne_seven = "NE7/DT12".split("/")[0] # "NE7"
-dt_twelve = "NE7/DT12".split("/")[1] # "DT12"
 ```
 
 ### Bus Arrivals

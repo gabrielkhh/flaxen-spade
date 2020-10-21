@@ -1,8 +1,6 @@
 import json
 from typing import Dict, List, Tuple
 
-import polyline
-
 from cache import cache
 from koro.dataset import CsvLoader, JsonLoader
 from koro.manipulation import first_true
@@ -124,6 +122,15 @@ class TrainStationFactory:
     @staticmethod
     @cache.memoize()
     def load_station(station_code: str) -> TrainStation:
+        """
+        Get an instance of TrainStation by its code. Combined formats ("NS1/NE1") is supported.
+
+        :param station_code: Code of the station
+        :return: New instance of TrainStation
+        """
+        if "/" in station_code:
+            station_code = station_code.split("/")[0]
+
         stations = CsvLoader().load_file("merged/train-data.csv")
         found_station = first_true(
             stations,
