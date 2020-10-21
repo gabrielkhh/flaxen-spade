@@ -19,7 +19,7 @@ class BaseLoader(ABC):
         :param filename: Name of the file
         :return: Parsed format of the file
         """
-        with open(self.resolve_absolute_path(filename), "r") as file:
+        with open(self.resolve_absolute_path(filename), "r", encoding="utf-8") as file:
             return self.serialize(file)
 
     @abstractmethod
