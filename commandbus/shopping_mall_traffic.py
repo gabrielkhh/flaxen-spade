@@ -99,5 +99,5 @@ def mall_traffic():
 
     print(tabulate(table_list, headers="firstrow", tablefmt="psql"))
 
-    with open(dataset_path("shopping-mall-passenger-volume.json"), "w+") as file:
+    with open(dataset_path("results/shopping-mall-passenger-volume.json"), "w+") as file:
         json.dump(results_dict, file)

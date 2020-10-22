@@ -40,22 +40,6 @@ def merge_train():
     click.echo("If you see BP14 missing, it is now defunct.")
 
 
-@t.cli.command("testcommand")
-def my_test_command():
-    """My task description"""
-    from commandbus import my_first_task
-
-    my_first_task.run()
-
-
-@t.cli.command("totaltapout")
-def total_tap_out():
-    """Shows you total tap out count"""
-    from commandbus.some_testing import run_test
-
-    run_test()
-
-
 @t.cli.command("mall-traffic")
 def compute_mall_traffic():
     """Outputs volume of people entering various shopping malls by using data from MRT stations that are in near proximity to a shopping mall."""
