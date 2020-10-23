@@ -61,17 +61,10 @@ def pop_Mrt():
     run()
     
     
-@t.cli.command("mall-traffic")
-def total_tap_out():
-    """Outputs volume of people entering various shopping malls by using data from MRT stations that are in near proximity to a shopping mall."""
-    from commandbus.shopping_mall_traffic import mall_traffic
-
-    mall_traffic()
-
-    
 @t.cli.command("pop_end_trip")
 def pop_end_trip():
     """Popular End Trip"""
     from commandbus.popular_end_trip import end_trip
     
     end_trip()
+
