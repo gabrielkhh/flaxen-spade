@@ -1,7 +1,5 @@
 import json
-
 from tabulate import tabulate
-
 from koro.dataset import CsvLoader, JsonLoader
 from koro.geo import Nearest
 from koro.manipulation import dataset_path

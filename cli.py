@@ -40,11 +40,24 @@ def merge_train():
     click.echo("If you see BP14 missing, it is now defunct.")
 
 
+@t.cli.command("testcommand")
+def my_test_command():
+    """My task description"""
+    from commandbus import my_first_task
+
+    my_first_task.run()
+
+
+@t.cli.command("totaltapout")
+def total_tap_out():
+    """Shows you total tap out count"""
+    from commandbus.some_testing import run_test
+    run_test()
+
 @t.cli.command("mall-traffic")
 def compute_mall_traffic():
     """Outputs volume of people entering various shopping malls by using data from MRT stations that are in near proximity to a shopping mall."""
     from commandbus.shopping_mall_traffic import mall_traffic
-
     mall_traffic()
 
 
@@ -60,6 +73,13 @@ def pop_Mrt():
     from commandbus.pop_Mrt_routes_on_weekends_publicholiday import run
     run()
     
+
+@t.cli.command("popular-station")
+def popular_station():
+    """Shows top 3 MRT Stations during Peak Hours"""
+    from commandbus.popular_stations_peak_hour import run
+    run()
+    
     
 @t.cli.command("pop_end_trip")
 def pop_end_trip():
@@ -67,4 +87,3 @@ def pop_end_trip():
     from commandbus.popular_end_trip import end_trip
     
     end_trip()
-
