@@ -67,12 +67,12 @@ def best_traveltim():
 
     run()
 
-    
+
 @t.cli.command("popMrt")
 def pop_Mrt():
     from commandbus.pop_Mrt_routes_on_weekends_publicholiday import run
     run()
-    
+
 
 @t.cli.command("popular-station")
 def popular_station():
