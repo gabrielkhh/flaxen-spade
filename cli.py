@@ -47,11 +47,13 @@ def compute_mall_traffic():
 
     mall_traffic()
 
-@t.cli.command("testcommand")
-def my_test_command():
-    """My task description"""
-    from commandbus import my_first_task
-    my_first_task.run()
+
+@t.cli.command("besttimetravel")
+def best_traveltim():
+    from commandbus.best_time_to_travel import run
+
+    run()
+
 
 @t.cli.command("totaltapout")
 def total_tap_out():
@@ -64,4 +66,3 @@ def pop_Mrt():
     from commandbus.pop_Mrt_routes_on_weekends_publicholiday import run
     run()
     
-
