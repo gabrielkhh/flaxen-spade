@@ -11,8 +11,6 @@ malls_dict = {}
 results_dict = {}
 tap_out_dict = {}
 hours_tuple = 0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
-volume_list_weekday = []
-volume_list_weekends = []
 table_headers = [
     "Shopping Mall Name",
     "Nearest MRT Station",
@@ -27,16 +25,16 @@ table_list_weekends = []
 def compute_volume(mall_name, station_name):
     constant_id_weekday = "WEEKDAY" + station_name
     constant_id_weekends = "WEEKENDS/HOLIDAY" + station_name
-    volume_list_weekday.clear()
-    volume_list_weekends.clear()
+    volume_list_weekday = []
+    volume_list_weekends = []
 
     for hour in hours_tuple:
         id_weekday = constant_id_weekday + str(hour)
         id_weekends = constant_id_weekends + str(hour)
-        volume_list_weekday.append({"hour": hour, "volume": tap_out_dict[id_weekday]})
-        volume_list_weekends.append({"hour": hour, "volume": tap_out_dict[id_weekends]})
-        # volume_list_weekday.append(tap_out_dict[id_weekday])
-        # volume_list_weekends.append(tap_out_dict[id_weekends])
+        # volume_list_weekday.append({"hour": hour, "volume": tap_out_dict[id_weekday]})
+        # volume_list_weekends.append({"hour": hour, "volume": tap_out_dict[id_weekends]})
+        volume_list_weekday.append(tap_out_dict[id_weekday])
+        volume_list_weekends.append(tap_out_dict[id_weekends])
         table_list_weekday.append(
             [mall_name, station_name, "Weekday", hour, tap_out_dict[id_weekday]]
         )
@@ -49,6 +47,7 @@ def compute_volume(mall_name, station_name):
                 tap_out_dict[id_weekends],
             ]
         )
+    return volume_list_weekday, volume_list_weekends
 
 
 def mall_traffic():
@@ -82,12 +81,12 @@ def mall_traffic():
         ]  # Tuple of (distance_in_km, Instance of TrainStation)
 
         # Get the volume of people
-        compute_volume(mall_name, closest_train.name)
+        list_weekdays, list_weekends = compute_volume(mall_name, closest_train.name)
 
         mall_data = {
             "stationName": closest_train.name,
-            "weekday": volume_list_weekday,
-            "weekends": volume_list_weekends,
+            "weekday": list_weekdays,
+            "weekends": list_weekends,
         }
         malls_dict[mall_name] = mall_data
 
