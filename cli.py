@@ -12,7 +12,8 @@ t = Blueprint("flaxen-tasks", __name__, cli_group="task")
 @cli.cli.command("clear-cache")
 def clear_cache():
     """Clears the cache"""
-    cache.clear()
+    with current_app.app_context():
+        cache.clear()
     click.echo("Cache cleared!")
 
 
