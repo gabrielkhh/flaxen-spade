@@ -8,5 +8,6 @@ cache = Cache(
         "CACHE_REDIS_URL": getenv("REDIS_URL", "redis://localhost:6379/0"),
         "CACHE_REDIS_PASSWORD": getenv("REDIS_PASSWORD"),
         "CACHE_KEY_PREFIX": "flaxen-spade",
+        "CACHE_DEFAULT_TIMEOUT": 300,
     }
 )
