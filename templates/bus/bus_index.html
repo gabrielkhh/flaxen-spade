@@ -5,9 +5,11 @@
         <h1 class="title">All Services</h1>
         <b-table :data='{{ buses | tojson }}'
                  :debounce-search="500"
+                 :paginated="true"
+                 :per-page="15"
         >
             {% raw %}
-            <b-table-column field="code" label="Service No." searchable sortable v-slot="props">
+            <b-table-column field="code" label="Service No." width="150" searchable sortable v-slot="props">
                 <a :href="`/bus/service/${props.row.code}`">
                     {{ props.row.code }}
                 </a>
