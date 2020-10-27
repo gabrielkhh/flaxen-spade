@@ -1,8 +1,10 @@
 import json
+
+from tabulate import tabulate
+
 from koro.dataset import CsvLoader
 from koro.manipulation import dataset_path
 from koro.resolve import TrainStationFactory
-from tabulate import tabulate
 
 results = {}
 six_list = []
@@ -61,7 +63,11 @@ def run(count):
     for hour in range(6, 9):
         result_list = []
         for data in results[str(hour)]:
-            result_dict = {"pt_code": data["pt_code"], "station_name": data["station_name"], "tap_in": data["tap_in"]}
+            result_dict = {
+                "pt_code": data["pt_code"],
+                "station_name": data["station_name"],
+                "tap_in": data["tap_in"],
+            }
             result_list.append(result_dict)
 
             # print in tabulate format
@@ -72,6 +78,6 @@ def run(count):
         outer_list.append({"hour": hour, "stations": result_list})
 
     print("Top %d  MRT Station(s) during Weekday Peak Hours" % count)
-    print(outer_list) # print in JSON format
+    print(outer_list)  # print in JSON format
     with open(dataset_path("results/popular_stations.json"), "w+") as file:
         json.dump(outer_list, file)
