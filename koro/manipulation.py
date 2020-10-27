@@ -1,6 +1,9 @@
-from os import path
+import os
+import pathlib
 
 from flask import current_app
+
+from cache import cache
 
 
 def first_true(iterable, pred=None, default=None):
@@ -29,4 +32,18 @@ def dataset_path(*args) -> str:
     :return: Path to the file
     """
 
-    return path.join(base_path(), "raw_datasets", *args)
+    return os.path.join(base_path(), "raw_datasets", *args)
+
+
+@cache.memoize()
+def directory_size(folder: str) -> int:
+    return sum(file.stat().st_size for file in pathlib.Path(folder).rglob("*"))
+
+
+def size_for_humans(size: int) -> str:
+    suffixes = ["B", "KB", "MB", "GB", "TB"]
+    suffix = 0
+    while size > 1024 and suffix < 4:
+        suffix += 1
+        size = size / 1024.0
+    return f"{size:.2f} {suffixes[suffix]}"
