@@ -54,13 +54,13 @@ def pop_mrt():
 
     run()
 
-
+@click.option("--count", prompt="Enter value")
 @t.cli.command("popular-stations")
-def popular_station():
-    """Shows top 3 MRT Stations during Peak Hours"""
+def popular_station(count):
+    """Shows top x MRT Stations during Weekday Peak Hours"""
     from commandbus.popular_stations_peak_hour import run
 
-    run()
+    run(count)
 
 
 @t.cli.command("pop-end-trip")
