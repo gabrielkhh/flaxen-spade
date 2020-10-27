@@ -13,15 +13,15 @@ class Stop(dict):
         self.stop_data = stop_data
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self.stop_data["name"]
 
     @property
-    def latitude(self):
+    def latitude(self) -> str:
         return self.stop_data["lat"]
 
     @property
-    def longitude(self):
+    def longitude(self) -> str:
         return self.stop_data["lng"]
 
     def __repr__(self) -> str:
