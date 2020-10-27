@@ -98,7 +98,7 @@ Vue.component('bus-info-panel', {
 });
 
 Vue.component('bar-charty', {
-    props: [chartLabels, chartData, header],
+    props: [chartLabel, chartData, header],
     extends: VueChartJs.Bar,
     data() {
         return {
