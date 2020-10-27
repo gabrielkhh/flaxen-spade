@@ -103,7 +103,7 @@ Vue.component('bar-charty', {
     data() {
         return {
             charting: {
-                labels: this.chartLabels,
+                labels: this.chartLabel,
                 datasets: [
                     {
                         label: this.header,
