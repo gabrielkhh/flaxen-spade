@@ -97,17 +97,18 @@ Vue.component('bus-info-panel', {
     },
 });
 
-Vue.component('charty', {
+Vue.component('bar-charty', {
+    props: [chartLabels, chartData],
     extends: VueChartJs.Bar,
     data() {
         return {
             charting: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: this.chartLabels,
                 datasets: [
                     {
                         label: 'バスどこ',
                         backgroundColor: '#f87979',
-                        data: [12, 19, 3, 5, 2, 3],
+                        data: this.chartData,
                     },
                 ],
             },

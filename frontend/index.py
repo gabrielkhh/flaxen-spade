@@ -3,7 +3,9 @@ from flask import Blueprint, Response, abort, current_app, jsonify, render_templ
 from requests import HTTPError
 from werkzeug.local import LocalProxy
 
+from cache import cache
 from koro.datamall import Datamall
+from koro.manipulation import dataset_path, directory_size
 from koro.resolve import BusServiceFactory
 
 logger = LocalProxy(lambda: current_app.logger)
@@ -13,7 +15,11 @@ app = Blueprint("frontend", __name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    sizes = {}
+    for directory in ["large", "merged", "od", "raw_other", "results", "static"]:
+        sizes[directory] = directory_size(dataset_path(directory))
+
+    return render_template("index.html", sizes=sizes)
 
 
 @app.route("/bus")
@@ -22,6 +28,7 @@ def bus_index():
 
 
 @app.route("/bus/service/<service>")
+@cache.cached(timeout=30)
 def bus_service(service):
     try:
         service = BusServiceFactory.load_service(service.upper())
@@ -32,6 +39,7 @@ def bus_service(service):
 
 
 @app.route("/bus/stop/<stop>")
+@cache.cached(timeout=30)
 def bus_stop(stop):
     try:
         stop = Datamall().bus_arrivals(stop)
