@@ -47,8 +47,17 @@
                 </div>
             </div>
         </section>
+        <hr class="divider">
         <div class="columns">
             <div class="column">
+                <h1 class="title">Tasks</h1>
+                <div class="content">
+                    <ul>
+                        {% for task in tasks %}
+                            <li><a href="{{ url_for('frontend.available_tasks', slug=task.slug) }}">{{ task.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
 
             </div>
         </div>

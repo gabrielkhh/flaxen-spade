@@ -1,4 +1,5 @@
 {% extends 'layouts/master.html' %}
+{% block title %}{{ stop.name }}{% endblock %}
 {% block content %}
     <div class="column is-12">
         <section>
@@ -70,6 +71,8 @@
                     {% endfor %}
                 </div>
                 <hr class="divider">
+            {% else %}
+                <h2 class="title has-text-centered">No available stops!</h2>
             {% endfor %}
         </section>
     </div>

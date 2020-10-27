@@ -5,8 +5,10 @@ from werkzeug.local import LocalProxy
 
 from cache import cache
 from koro.datamall import Datamall
+from koro.dataset import JsonLoader
 from koro.manipulation import dataset_path, directory_size
-from koro.resolve import BusServiceFactory
+from koro.resolve import BusServiceFactory, StopFactory
+from koro.tasks import TaskBuilder
 
 logger = LocalProxy(lambda: current_app.logger)
 
@@ -19,12 +21,32 @@ def index():
     for directory in ["large", "merged", "od", "raw_other", "results", "static"]:
         sizes[directory] = directory_size(dataset_path(directory))
 
-    return render_template("index.html", sizes=sizes)
+    tasks = TaskBuilder().get_tasks()
+
+    return render_template("index.html", sizes=sizes, tasks=tasks)
 
 
-@app.route("/bus")
-def bus_index():
-    return render_template("bus/index.html")
+@app.route("/buses")
+def service_index():
+    services = JsonLoader().load_file("static/services.final.json").items()
+    services = [{"name": service["name"], "code": code} for code, service in services]
+
+    return render_template("bus/bus_index.html", buses=services)
+
+
+@app.route("/stops")
+def stop_index():
+    stops = StopFactory.all()
+    stops = [
+        {
+            "name": stop.name,
+            "code": stop.stop_code,
+            "lat": stop.latitude,
+            "lng": stop.longitude,
+        }
+        for stop in stops
+    ]
+    return render_template("bus/stop_index.html", stops=stops)
 
 
 @app.route("/bus/service/<service>")
@@ -47,3 +69,8 @@ def bus_stop(stop):
         abort(404)
 
     return render_template("bus/stop.html", stop=stop.get_stop(), services=stop.all())
+
+
+@app.route("/task/<slug>")
+def available_tasks(slug):
+    task = TaskBuilder().find_task(slug)

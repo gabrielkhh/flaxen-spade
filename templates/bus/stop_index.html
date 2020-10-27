@@ -1,0 +1,29 @@
+{% extends 'layouts/master.html' %}
+{% block title %}All Stops{% endblock %}
+{% block content %}
+    <div class="column is-12">
+        <h1 class="title">All Stops</h1>
+        <b-table :data='{{ stops | tojson }}'
+                 :debounce-search="500"
+                 :paginated="true"
+                 :per-page="15"
+        >
+            {% raw %}
+            <b-table-column field="code" label="Code" width="150" searchable sortable v-slot="props">
+                {{ props.row.code }}
+            </b-table-column>
+            <b-table-column field="name" label="Name" searchable sortable v-slot="props">
+                <a :href="`/bus/stop/${props.row.code}`">
+                    {{ props.row.name }}
+                </a>
+            </b-table-column>
+            <b-table-column field="lat" label="Latitude" width="200" searchable sortable v-slot="props">
+                {{ props.row.lat }}
+            </b-table-column>
+            <b-table-column field="lng" label="Longitude" width="200" searchable sortable v-slot="props">
+                {{ props.row.lng }}
+            </b-table-column>
+            {% endraw %}
+        </b-table>
+    </div>
+{% endblock %}

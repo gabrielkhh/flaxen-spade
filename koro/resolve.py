@@ -31,6 +31,12 @@ class Stop(dict):
 class StopFactory:
     @staticmethod
     @cache.memoize()
+    def all() -> List[Stop]:
+        stops: Dict = JsonLoader().load_file("static/stops.json")
+        return [Stop(bus_stop_code, stop) for bus_stop_code, stop in stops.items()]
+
+    @staticmethod
+    @cache.memoize()
     def load_stop(bus_stop_code: str) -> Stop:
         read = JsonLoader()
         return Stop(bus_stop_code, read.load_file("static/stops.json")[bus_stop_code])
@@ -96,6 +102,12 @@ class BusService:
 
 
 class BusServiceFactory:
+    @staticmethod
+    @cache.memoize()
+    def all() -> List[BusService]:
+        services: Dict = JsonLoader().load_file("static/serviceStops.json")
+        return [BusService(service_code, bus) for service_code, bus in services.items()]
+
     @staticmethod
     @cache.memoize()
     def load_service(bus_service_code: str) -> BusService:
