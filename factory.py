@@ -8,6 +8,7 @@ from backend.api import api
 from cache import cache
 from cli import cli, merge, t
 from frontend.index import app as frontend
+from koro.manipulation import size_for_humans
 
 logging.config.dictConfig(
     {
@@ -50,5 +51,9 @@ def create_app():
     @app.errorhandler(404)
     def not_found(error):
         return f"404."
+
+    @app.template_filter("human_size")
+    def humanized_size(size):
+        return size_for_humans(size)
 
     return app
