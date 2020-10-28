@@ -43,6 +43,7 @@ def compute_mall_traffic():
 
 @t.cli.command("best-time-travel")
 def best_travel_times():
+    """The top 5 best time to travel for each station"""
     from commandbus.best_time_to_travel import run
 
     run()
@@ -50,6 +51,7 @@ def best_travel_times():
 
 @t.cli.command("pop-mrt")
 def pop_mrt():
+    """The top 50 MRT routes during Weekends/Holidays"""
     from commandbus.pop_mrt_routes_on_weekends import run
 
     run()
