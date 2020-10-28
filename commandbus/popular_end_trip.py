@@ -32,17 +32,21 @@ def end_trip():
                     results[pt_code]["weekend"].append(
                         {"hour": stat_hr, "tap_in": tap_in, "tap_out": tap_out}
                     )
-                    list_for_tabulate.append([pt_code, day_type, stat_hr, tap_in, tap_out])
+                    list_for_tabulate.append(
+                        [pt_code, day_type, stat_hr, tap_in, tap_out]
+                    )
 
             if len(results[pt_code]["weekday"]) < 5 and day_type == "WEEKDAY":
                 if stat_hr in ("21", "22", "23", "0"):
                     results[pt_code]["weekday"].append(
                         {"hour": stat_hr, "tap_in": tap_in, "tap_out": tap_out}
                     )
-                    list_for_tabulate.append([pt_code, day_type, stat_hr, tap_in, tap_out])
-                   
+                    list_for_tabulate.append(
+                        [pt_code, day_type, stat_hr, tap_in, tap_out]
+                    )
+
         final[month] = results
-        
+
     list_for_tabulate.insert(0, ["pt_code", "day_type", "stat_hr", "tap_in", "tap_out"])
     print(tabulate(list_for_tabulate, headers="firstrow", tablefmt="pretty"))
     with open(dataset_path("results/popular_end_trip.json"), "w+") as file:

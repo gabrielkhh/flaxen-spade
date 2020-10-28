@@ -6,11 +6,8 @@ from cache import cache
 from koro.datamall import Datamall
 from koro.dataset import JsonLoader
 from koro.manipulation import dataset_path, directory_size
-
-from koro.dataset import JsonLoader
 from koro.resolve import BusServiceFactory, StopFactory
 from koro.tasks import TaskBuilder, ViewDispatcher
-
 
 logger = LocalProxy(lambda: current_app.logger)
 
@@ -85,11 +82,34 @@ def mall_index():
 
 @app.route("/mall/<mallName>")
 def mall_traffic(mallName):
-    mall_traffic_data = JsonLoader().load_file("results/shopping-mall-passenger-volume.json")
+    mall_traffic_data = JsonLoader().load_file(
+        "results/shopping-mall-passenger-volume.json"
+    )
     mall = mall_traffic_data["June"][mallName]
     obj_arr_weekday = []
     obj_arr_weekend = []
-    fixed_tuple = 0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+    fixed_tuple = (
+        0,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+    )
 
     for (counter, data) in enumerate(mall["weekday"]):
         obj_dict = {"hour": fixed_tuple[counter], "volume": data}
@@ -101,13 +121,25 @@ def mall_traffic(mallName):
 
     max_weekday = max(mall["weekday"])
     max_weekend = max(mall["weekends"])
-    max_weekday_dict = {"hour": fixed_tuple[mall["weekday"].index(max_weekday)], "volume": max_weekday}
-    max_weekend_dict = {"hour": fixed_tuple[mall["weekends"].index(max_weekend)], "volume": max_weekend}
+    max_weekday_dict = {
+        "hour": fixed_tuple[mall["weekday"].index(max_weekday)],
+        "volume": max_weekday,
+    }
+    max_weekend_dict = {
+        "hour": fixed_tuple[mall["weekends"].index(max_weekend)],
+        "volume": max_weekend,
+    }
     occurrence_dict = {"maxWeekday": max_weekday_dict, "maxWeekend": max_weekend_dict}
 
     combined_objdict = {"weekday": obj_arr_weekday, "weekend": obj_arr_weekend}
 
-    return render_template("mall/information.html", mall=mall, mallName=mallName, mallObj=combined_objdict, occurence=occurrence_dict)
+    return render_template(
+        "mall/information.html",
+        mall=mall,
+        mallName=mallName,
+        mallObj=combined_objdict,
+        occurence=occurrence_dict,
+    )
 
 
 @app.route("/task")

@@ -90,7 +90,7 @@ def mall_traffic():
             "weekday": list_weekdays,
             "weekends": list_weekends,
             "latitude": coordinates["latitude"],
-            "longitude": coordinates["longitude"]
+            "longitude": coordinates["longitude"],
         }
 
         malls_dict[mall_name] = mall_data
