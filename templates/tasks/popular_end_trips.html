@@ -54,7 +54,15 @@
                                                 <div class="level-item has-text-centered column">
                                                     <div>
                                                         <p class="heading">{{ weekday.hour }}</p>
-                                                        <p class="title has-text-grey-dark">{{ weekday.tap_in }}/{{ weekday.tap_out }}</p>
+                                                        <p class="title has-text-grey-dark">
+                                                            <span title="Tap In">
+                                                            {{ weekday.tap_in }}
+                                                            </span>
+                                                            /
+                                                            <span title="Tap Out">
+                                                            {{ weekday.tap_out }}
+                                                            </span>
+                                                        </p>
                                                     </div>
                                                 </div>
                                             {% else %}
