@@ -68,11 +68,10 @@ class ViewDispatcher:
                 new["month"] = {
                     key: value
                     for key, value in results[month].items()
-                    if filter_by.upper() in key
+                    if filter_by in key
                 }
 
             results = new
-            print(new)
 
         return render_template("tasks/popular_end_trips.html", results=results.items())
 
