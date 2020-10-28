@@ -132,13 +132,13 @@ Vue.component('bar-charty', {
     },
 });
 
-Vue.component('line-charty', {
-    props: ['chartLabel', 'chartData', 'header'],
+Vue.component('mall-traffic-info', {
+    props: ['chartData', 'header'],
     extends: VueChartJs.Line,
     data() {
         return {
             charting: {
-                labels: this.chartLabel,
+                labels: [0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
                 datasets: [
                     {
                         label: this.header,
@@ -150,9 +150,20 @@ Vue.component('line-charty', {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                scales: {
+                    xAxes: [
+                        {
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Time of Day (Hour)"
+                            }
+                        },
+                    ],
                     yAxes: [
                         {
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Volume of People"
+                            },
                             ticks: {
                                 beginAtZero: true,
                             },
@@ -167,6 +178,174 @@ Vue.component('line-charty', {
     },
 });
 
+Vue.component('mall-traffic-info-second', {
+    props: ['chartData', 'header'],
+    extends: VueChartJs.Line,
+    data() {
+        return {
+            charting: {
+                labels: [0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+                datasets: [
+                    {
+                        label: this.header,
+                        backgroundColor: '#f87979',
+                        data: this.chartData,
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    xAxes: [
+                        {
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Time of Day (Hour)"
+                            }
+                        },
+                    ],
+                    yAxes: [
+                        {
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Volume of People"
+                            },
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        },
+                    ],
+                },
+            },
+        };
+    },
+    mounted() {
+        this.renderChart(this.charting, this.options);
+    },
+});
+
+Vue.component('mall-map', {
+    template: '#mall-map',
+    props: ['mark'],
+    data() {
+        return {
+            url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            zoom: 20,
+            center: this.mark,
+            marker: this.mark,
+        };
+    },
+    methods: {
+        boundMapRects() {
+            this.map = this.$refs.leafstopmap.mapObject;
+        },
+    },
+});
+
+Vue.component("day-type-selector", {
+    template: '#toggle-day-type',
+    data() {
+        return {
+            isWeekday: true
+        }
+    },
+    methods: {
+        toggleDayType() {
+            this.isWeekday = !this.isWeekday;
+            bus.$emit('changedDayType');
+
+        }
+    }
+});
+
+Vue.component("mall-graphs", {
+    template: '#mall-graphs',
+    data() {
+        return {
+            isWeekday: true
+        }
+    },
+    created() {
+        bus.$on('changedDayType', () => {
+            this.isWeekday = !this.isWeekday;
+        });
+    }
+});
+
+Vue.component("mall-table", {
+    template: '#mall-table',
+    props: ['tableData'],
+    data() {
+        return {
+            data: [],
+            isBordered: true,
+            isHoverable: true,
+            sortIcon: 'arrow-up',
+            sortIconSize: 'is-small',
+            isStriped: true,
+            isWeekday: true,
+            obj: this.tableData
+        }
+    },
+    watch: {
+        isWeekday: function () {
+            // Do something
+            if (this.isWeekday) {
+                this.data = this.obj["weekday"];
+            } else {
+                this.data = this.obj["weekend"];
+            }
+        }
+    },
+    created() {
+        this.data = this.obj["weekday"];
+        bus.$on('changedDayType', () => {
+            this.isWeekday = !this.isWeekday;
+        });
+    }
+});
+
+Vue.component("mall-list-table", {
+    template: '#mall-list-table',
+    props: ['tableData'],
+    data() {
+        return {
+            data: this.tableData,
+            columns: [
+                {
+                    field: 'name',
+                    label: 'Shopping Mall Name',
+                    width: '500',
+                    searchable: true,
+                },
+                {
+                    field: 'url',
+                    label: 'Link',
+                    width: '500',
+                }
+            ],
+            isBordered: false,
+            isHoverable: true,
+            isStriped: true
+        }
+    },
+    mounted() {
+        var mallsData = JSON.parse(JSON.stringify(this.data));
+        var mallsArr = [];
+        for (i = 0; i < this.data.length; i++)  {
+            dict = {};
+            var mallName = mallsData[i].name;
+            var encodedName = encodeURI(mallName);
+
+            dict.name = mallName;
+            dict.url = "<a href='/mall/" + encodedName + "'>View Information</a>";
+
+            mallsArr.push(dict);
+        }
+        this.data = mallsArr;
+    }
+});
 
 const bus = new Vue();
 

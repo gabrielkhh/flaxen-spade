@@ -13,7 +13,8 @@
             <l-polyline color="#121212" :lat-lngs="busRoute"></l-polyline>
             <template v-for="route in busStops">
                 <template v-for="point in route">
-                    <l-circle-marker :stroke="false" :fill-opacity="1.0" :radius="5" fill-color="#D85DA6" :lat-lng="point">
+                    <l-circle-marker :stroke="false" :fill-opacity="1.0" :radius="5" fill-color="#D85DA6"
+                                     :lat-lng="point">
                         <l-tooltip>{{ point.stop_code }}: {{ point.name }}</l-tooltip>
                     </l-circle-marker>
                 </template>
@@ -104,6 +105,71 @@
                 <hr class="divider">
             </section>
         </div>
+    </div>
+</script>
+<script type="text/x-template" id="toggle-day-type">
+    <div>
+        <button class="button is-primary" @click="toggleDayType">
+            <span v-if="isWeekday">Show Weekends/Holidays Data</span>
+            <span v-else>Show Weekdays Data</span>
+        </button>
+        <h2 class="has-text-centered is-size-2" v-if="isWeekday">Currently showing Weekdays Data</h2>
+        <h2 class="has-text-centered is-size-2" v-else>Currently showing Weekends/Holidays Data</h2>
+    </div>
+</script>
+<script type="text/x-template" id="mall-graphs">
+    <div>
+        <div v-if="isWeekday">
+            <slot name="first"></slot>
+        </div>
+        <div v-else>
+            <slot name="second"></slot>
+        </div>
+    </div>
+</script>
+<script type="text/x-template" id="mall-map">
+    <div style="height: 300px;">
+        <l-map
+                style="width: 100%"
+                :zoom="zoom"
+                :center="center"
+                ref="leafstopmap"
+                @ready="boundMapRects"
+        >
+            <l-tile-layer :url="url"></l-tile-layer>
+        </l-map>
+    </div>
+</script>
+<script type="text/x-template" id="mall-table">
+    <div>
+        <b-table
+            :data="data"
+            :bordered="isBordered"
+            :striped="isStriped"
+            :hoverable="isHoverable"
+            :sort-icon="sortIcon"
+            :sort-icon-size="sortIconSize"
+            default-sort="hour"
+        >
+            <b-table-column field="hour" label="Hour of Day" width="150" centered sortable numeric v-slot="props">
+                {{ props.row.hour }}
+            </b-table-column>
+            <b-table-column field="volume" label="Volume of People" centered sortable numeric v-slot="props">
+                {{ props.row.volume }}
+            </b-table-column>
+        </b-table>
+    </div>
+</script>
+<script type="text/x-template" id="mall-list-table">
+    <div>
+        <b-table
+            :data="data"
+            :bordered="isBordered"
+            :striped="isStriped"
+            :hoverable="isHoverable"
+            :columns="columns"
+        >
+        </b-table>
     </div>
 </script>
 {% endraw %}

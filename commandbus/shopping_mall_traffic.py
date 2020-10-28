@@ -31,8 +31,8 @@ def compute_volume(mall_name, station_name):
     for hour in hours_tuple:
         id_weekday = constant_id_weekday + str(hour)
         id_weekends = constant_id_weekends + str(hour)
-        # volume_list_weekday.append({"hour": hour, "volume": tap_out_dict[id_weekday]})
-        # volume_list_weekends.append({"hour": hour, "volume": tap_out_dict[id_weekends]})
+        # volume_list_weekday_dict_format.append({"hour": hour, "volume": tap_out_dict[id_weekday]})
+        # volume_list_weekends_dict_format.append({"hour": hour, "volume": tap_out_dict[id_weekends]})
         volume_list_weekday.append(tap_out_dict[id_weekday])
         volume_list_weekends.append(tap_out_dict[id_weekends])
         table_list_weekday.append(
@@ -85,9 +85,14 @@ def mall_traffic():
 
         mall_data = {
             "stationName": closest_train.name,
+            "stationCode": closest_train.code,
+            "stationLine": closest_train.line,
             "weekday": list_weekdays,
             "weekends": list_weekends,
+            "latitude": coordinates["latitude"],
+            "longitude": coordinates["longitude"]
         }
+
         malls_dict[mall_name] = mall_data
 
     results_dict[temp_month_name] = malls_dict

@@ -1,0 +1,67 @@
+{% extends 'layouts/master.html' %}
+{% block title %}Mall Traffic Data{% endblock %}
+{% block content %}
+    <div class="column is-12">
+        <section>
+        </section>
+        <section class="hero is-info welcome is-small mb-4">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">Mall Traffic of {{ mallName }} for June 2020</h1>
+                    <h2 class="subtitle">View foot traffic volume of various shopping malls around Singapore based on
+                        data from the nearest train station.</h2>
+                </div>
+            </div>
+        </section>
+        <div class="tile is-ancestor">
+            <div class="tile is-4 is-vertical is-parent">
+                <div class="tile is-child box">
+                    <p class="title has-text-centered">Nearest MRT Station</p>
+                    <p class="has-text-centered is-size-3">{{ mall.stationCode }} {{ mall.stationName }}</p>
+                    <p class="has-text-centered">{{ mall.stationLine }}</p>
+                </div>
+                <div class="tile is-child box">
+                    <p class="title has-text-centered">Peak Volume Information</p>
+                    <p class="is-size-5">Weekdays Peak Volume:</p>
+                    <p class="has-text-centered">{{ occurence.maxWeekday.volume }} which occurred at hour {{ occurence.maxWeekday.hour }}</p>
+                    <p class="is-size-5 mt-3">Weekends/Holidays Peak Volume:</p>
+                    <p class="has-text-centered">{{ occurence.maxWeekend.volume }} which occurred at hour {{ occurence.maxWeekend.hour }}</p>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <div class="tile is-child box">
+                    <p class="title has-text-centered">Shopping Mall Map View</p>
+                    <mall-map :mark="[{{ mall.latitude }}, {{ mall.longitude }}]"></mall-map>
+                </div>
+            </div>
+        </div>
+        <section class="mt-4">
+            <div class="container">
+                <day-type-selector>
+                </day-type-selector>
+            </div>
+        </section>
+        <section class="pt-1 pb-1">
+            <mall-graphs>
+
+                <template slot="first">
+                    <mall-traffic-info
+                            :chart-data="{{ mall.weekday }}"
+                            header="Volume of People at {{ mallName }} on Weekdays for June 2020"
+                    ></mall-traffic-info>
+                </template>
+                <template slot="second">
+                    <mall-traffic-info-second
+                            :chart-data="{{ mall.weekends }}"
+                            header="Volume of People at {{ mallName }} on Weekends/Holidays for June 2020"
+                    ></mall-traffic-info-second>
+                </template>
+
+            </mall-graphs>
+        </section>
+
+        <section>
+            <mall-table :table-data="{{ mallObj }}"></mall-table>
+        </section>
+    </div>
+{% endblock %}
