@@ -1,7 +1,7 @@
 {% extends 'layouts/master.html' %}
 {% block title %}All Services{% endblock %}
 {% block content %}
-    <div class="column is-12">
+    <div class="column is-full">
         <h1 class="title">All Services</h1>
         <b-table :data='{{ buses | tojson }}'
                  :debounce-search="500"

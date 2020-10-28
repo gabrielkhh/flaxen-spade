@@ -1,5 +1,4 @@
-import jsonpickle
-from flask import Blueprint, Response, abort, current_app, jsonify, render_template
+from flask import Blueprint, abort, current_app, render_template
 from requests import HTTPError
 from werkzeug.local import LocalProxy
 
@@ -8,7 +7,7 @@ from koro.datamall import Datamall
 from koro.dataset import JsonLoader
 from koro.manipulation import dataset_path, directory_size
 from koro.resolve import BusServiceFactory, StopFactory
-from koro.tasks import TaskBuilder
+from koro.tasks import TaskBuilder, ViewDispatcher
 
 logger = LocalProxy(lambda: current_app.logger)
 
@@ -21,9 +20,7 @@ def index():
     for directory in ["large", "merged", "od", "raw_other", "results", "static"]:
         sizes[directory] = directory_size(dataset_path(directory))
 
-    tasks = TaskBuilder().get_tasks()
-
-    return render_template("index.html", sizes=sizes, tasks=tasks)
+    return render_template("index.html", sizes=sizes)
 
 
 @app.route("/buses")
@@ -71,6 +68,11 @@ def bus_stop(stop):
     return render_template("bus/stop.html", stop=stop.get_stop(), services=stop.all())
 
 
+@app.route("/task")
+def all_tasks():
+    return render_template("tasks/index.html", tasks=TaskBuilder().get_tasks())
+
+
 @app.route("/task/<slug>")
 def available_tasks(slug):
-    task = TaskBuilder().find_task(slug)
+    return ViewDispatcher().dispatch(slug)

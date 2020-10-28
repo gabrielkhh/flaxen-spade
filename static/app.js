@@ -132,6 +132,42 @@ Vue.component('bar-charty', {
     },
 });
 
+Vue.component('line-charty', {
+    props: ['chartLabel', 'chartData', 'header'],
+    extends: VueChartJs.Line,
+    data() {
+        return {
+            charting: {
+                labels: this.chartLabel,
+                datasets: [
+                    {
+                        label: this.header,
+                        backgroundColor: '#f87979',
+                        data: this.chartData,
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [
+                        {
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        },
+                    ],
+                },
+            },
+        };
+    },
+    mounted() {
+        this.renderChart(this.charting, this.options);
+    },
+});
+
+
 const bus = new Vue();
 
 const app = new Vue({

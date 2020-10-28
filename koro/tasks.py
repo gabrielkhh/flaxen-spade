@@ -1,6 +1,9 @@
 import re
 from typing import Optional
 
+from flask import render_template, request
+
+from koro.dataset import JsonLoader
 from koro.manipulation import first_true
 
 
@@ -34,3 +37,45 @@ class TaskBuilder:
 
     def get_tasks(self):
         return self.tasks
+
+
+class ViewDispatcher:
+    def __init__(self):
+        self.dispatch_table = {
+            "best-time-to-travel": self.best_time_to_travel,
+            "popular-mrt-routes-on-weekends": self.popular_mrt_routes_on_weekends,
+            "popular-end-trips": self.popular_end_trips,
+            "popular-stations": self.popular_stations,
+        }
+
+    def dispatch(self, slug):
+        return self.dispatch_table[slug]()
+
+    def best_time_to_travel(self):
+        results = JsonLoader().load_file("results/best_time_to_travel.json")
+        return render_template("tasks/best_time.html", results=results)
+
+    def popular_mrt_routes_on_weekends(self):
+        results = JsonLoader().load_file("results/pop_mrt_routes_on_weekends.json")
+        return render_template("tasks/popular_mrt_routes.html", results=results)
+
+    def popular_end_trips(self):
+        results = JsonLoader().load_file("results/popular_end_trip.json")
+
+        if filter_by := request.args.get("filter"):
+            new = {}
+            for month in ["06", "07", "08"]:
+                new["month"] = {
+                    key: value
+                    for key, value in results[month].items()
+                    if filter_by in key
+                }
+
+            results = new
+            print(new)
+
+        return render_template("tasks/popular_end_trips.html", results=results.items())
+
+    def popular_stations(self):
+        results = JsonLoader().load_file("results/popular_stations.json")
+        return render_template("tasks/popular_stations.html")

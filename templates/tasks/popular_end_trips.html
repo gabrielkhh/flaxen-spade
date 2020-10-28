@@ -1,0 +1,88 @@
+{% extends 'layouts/master.html' %}
+{% block title %}Popular End Trips{% endblock %}
+{% block content %}
+    <div class="column">
+        <div class="column section pb-2 is-full">
+            <div class="container">
+                <h1 class="title">Popular late night end trips</h1>
+                <form method="GET">
+                    <b-field label="Search..." label-position="on-border">
+                        <b-input name="filter" placeholder="Search..." type="search" value="{{ request.args.get('filter') or '' }}"></b-input>
+                        <p class="control">
+                            <b-button class="button is-primary">Search</b-button>
+                        </p>
+                    </b-field>
+                </form>
+            </div>
+        </div>
+        <div class="column section is-full">
+            {% for month, result in results %}
+                <h3 class="title">
+                    {% if month == "06" %}
+                        June
+                    {% elif month == "07" %}
+                        July
+                    {% elif month == "08" %}
+                        August
+                    {% endif %}
+                </h3>
+
+                <div class="column">
+                    {% for station, week in result.items() %}
+                        <b-collapse class="card" animation="slide" :open="false">
+                            <div
+                                    slot="trigger"
+                                    slot-scope="props"
+                                    class="card-header"
+                            >
+                                <p class="card-header-title">
+                                    {{ station }}
+                                </p>
+                                <a class="card-header-icon">
+                                    <b-icon
+                                            :icon="props.open ? 'menu-down' : 'menu-up'">
+                                    </b-icon>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <div class="content">
+                                    <h2 class="title"></h2>
+                                    <section class="pt-1">
+                                        <div class="levels columns">
+                                            <p class="heading">Weekdays</p>
+                                            {% for weekday in week.weekday %}
+                                                <div class="level-item has-text-centered column">
+                                                    <div>
+                                                        <p class="heading">{{ weekday.hour }}</p>
+                                                        <p class="title has-text-grey-dark">{{ weekday.tap_in }}/{{ weekday.tap_out }}</p>
+                                                    </div>
+                                                </div>
+                                            {% else %}
+                                                <p class="title has-text-grey-dark">No data!</p>
+                                            {% endfor %}
+                                        </div>
+                                        <hr class="divider">
+                                        <div class="levels columns">
+                                            <p class="heading">Weekends</p>
+                                            {% for weekend in week.weekend %}
+                                                <div class="level-item has-text-centered column">
+                                                    <div>
+                                                        <p class="heading">{{ weekend.hour }}</p>
+                                                        <p class="title has-text-grey-dark">{{ weekend.tap_in }}/{{ weekend.tap_out }}</p>
+                                                    </div>
+                                                </div>
+                                            {% else %}
+                                                <p class="title has-text-grey-dark">No data!</p>
+                                            {% endfor %}
+                                        </div>
+                                    </section>
+
+                                </div>
+                            </div>
+                        </b-collapse>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
