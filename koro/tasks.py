@@ -62,13 +62,13 @@ class ViewDispatcher:
     def popular_end_trips(self):
         results = JsonLoader().load_file("results/popular_end_trip.json")
 
-        if filter_by := request.args.get("filter").upper():
+        if filter_by := request.args.get("filter"):
             new = {}
             for month in ["06", "07", "08"]:
                 new["month"] = {
                     key: value
                     for key, value in results[month].items()
-                    if filter_by in key
+                    if filter_by.upper() in key
                 }
 
             results = new
