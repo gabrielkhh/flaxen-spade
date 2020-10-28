@@ -10,6 +10,8 @@ def end_trip():
     reader = CsvLoader(delimiter=",")
     format_of_file = "od/mangled/BY_TAPIN_transport_node_train_2020{}.csv"
     final = {}
+
+    list_for_tabulate = []
     for month in ["06", "07", "08"]:
         file = format_of_file.format(month)
 
@@ -30,21 +32,18 @@ def end_trip():
                     results[pt_code]["weekend"].append(
                         {"hour": stat_hr, "tap_in": tap_in, "tap_out": tap_out}
                     )
+                    list_for_tabulate.append([pt_code, day_type, stat_hr, tap_in, tap_out])
 
             if len(results[pt_code]["weekday"]) < 5 and day_type == "WEEKDAY":
                 if stat_hr in ("21", "22", "23", "0"):
                     results[pt_code]["weekday"].append(
                         {"hour": stat_hr, "tap_in": tap_in, "tap_out": tap_out}
                     )
-                    print(
-                        tabulate(
-                            [
-                                ["pt_code", "day_type", "stat_hr", "tap_in", "tap_out"],
-                                [pt_code, day_type, stat_hr, tap_in, tap_out],
-                            ],
-                            headers="firstrow",
-                        )
-                    )
+                    list_for_tabulate.append([pt_code, day_type, stat_hr, tap_in, tap_out])
+                   
         final[month] = results
+        
+    list_for_tabulate.insert(0, ["pt_code", "day_type", "stat_hr", "tap_in", "tap_out"])
+    print(tabulate(list_for_tabulate, headers="firstrow", tablefmt="pretty"))
     with open(dataset_path("results/popular_end_trip.json"), "w+") as file:
         json.dump(final, file)
