@@ -40,7 +40,7 @@
                                 </p>
                                 <a class="card-header-icon">
                                     <b-icon
-                                            :icon="props.open ? 'menu-down' : 'menu-up'">
+                                            :icon="props.open ? 'menu-up' : 'menu-down'">
                                     </b-icon>
                                 </a>
                             </div>
@@ -72,9 +72,11 @@
                                                 <div class="level-item has-text-centered column">
                                                     <div>
                                                         <p class="heading">{{ weekend.hour }}</p>
-                                                        <span title="Tap In">{{ weekend.tap_in }}</span>
-                                                        /
-                                                        <span title="Tap Out">{{ weekend.tap_out }}</span>
+                                                        <p class="title has-text-grey-dark">
+                                                            <span title="Tap In">{{ weekend.tap_in }}</span>
+                                                            /
+                                                            <span title="Tap Out">{{ weekend.tap_out }}</span>
+                                                        </p>
                                                     </div>
                                                 </div>
                                             {% else %}
