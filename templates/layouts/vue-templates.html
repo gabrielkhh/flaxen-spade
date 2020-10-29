@@ -151,7 +151,7 @@
             :sort-icon-size="sortIconSize"
             default-sort="hour"
         >
-            <b-table-column field="hour" label="Hour of Day" width="150" centered sortable numeric v-slot="props">
+            <b-table-column field="hour" label="Hour of Day (24 Hour Notation)" width="350" centered sortable numeric v-slot="props">
                 {{ props.row.hour }}
             </b-table-column>
             <b-table-column field="volume" label="Volume of People" centered sortable numeric v-slot="props">

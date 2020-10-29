@@ -332,18 +332,59 @@ Vue.component("mall-list-table", {
     mounted() {
         var mallsData = JSON.parse(JSON.stringify(this.data));
         var mallsArr = [];
-        for (i = 0; i < this.data.length; i ++) {
+        for (i = 0; i < this.data.length; i++) {
             dict = {};
             var mallName = mallsData[i].name;
             var encodedName = encodeURI(mallName);
 
             dict.name = mallName;
-            dict.url = "<a href='/mall/" + encodedName + "'>View Information</a>";
+            dict.url = "<a class='button is-primary' href='/mall/" + encodedName + "'>View Information</a>";
 
             mallsArr.push(dict);
         }
         this.data = mallsArr;
     },
+});
+
+Vue.component("mall-list-table", {
+    template: '#mall-list-table',
+    props: ['tableData'],
+    data() {
+        return {
+            data: this.tableData,
+            columns: [
+                {
+                    field: 'name',
+                    label: 'Shopping Mall Name',
+                    width: '500',
+                    searchable: true,
+                },
+                {
+                    field: 'url',
+                    label: 'Link',
+                    width: '500',
+                }
+            ],
+            isBordered: false,
+            isHoverable: true,
+            isStriped: true
+        }
+    },
+    mounted() {
+        var mallsData = JSON.parse(JSON.stringify(this.data));
+        var mallsArr = [];
+        for (i = 0; i < this.data.length; i++)  {
+            dict = {};
+            var mallName = mallsData[i].name;
+            var encodedName = encodeURI(mallName);
+
+            dict.name = mallName;
+            dict.url = "<a class='button is-primary' href='/mall/" + encodedName + "'>View Information</a>";
+
+            mallsArr.push(dict);
+        }
+        this.data = mallsArr;
+    }
 });
 
 const bus = new Vue();
