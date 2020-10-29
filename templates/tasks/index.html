@@ -6,7 +6,9 @@
         <div class="content">
             <ul>
                 {% for task in tasks %}
-                    <li><a href="{{ url_for('frontend.available_tasks', slug=task.slug) }}">{{ task.name }}</a></li>
+                    <li>
+                        <a href="{{ url_for('frontend.available_tasks', slug=task.slug) }}">{{ task.name }}</a> (<a href="{{ url_for('frontend.available_task_export', slug=task.slug) }}">Export</a>)
+                    </li>
                 {% endfor %}
             </ul>
         </div>
