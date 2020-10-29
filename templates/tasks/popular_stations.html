@@ -2,7 +2,48 @@
 {% block title %}Popular Stations{% endblock %}
 {% block content %}
     <div class="column">
-        <h1 class="title">Tasks</h1>
+        <div class="column pb-2 is-full">
+            <h1 class="title">Popular MRT Station during peak hours</h1>
+            <h2 class="subtitle">From 6 - 9 am</h2>
+        </div>
+        <div class="column section is-full">
+            <div class="column">
+                {% for stations in results %}
+                    <b-collapse class="card" animation="slide" :open="false">
+                        <div
+                                slot="trigger"
+                                slot-scope="props"
+                                class="card-header"
+                        >
+                            <p class="card-header-title">
+                                {{ stations.hour }} am
+                            </p>
+                            <a class="card-header-icon">
+                                <b-icon :icon="props.open ? 'menu-up' : 'menu-down'"></b-icon>
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                <section class="pt-1">
+                                    {% for row in stations.stations|batch(4, '&nbsp;') %}
+                                        <div class="levels columns">
+                                            {% for station in row %}
+                                                <div class="level-item has-text-centered column">
+                                                    <div>
+                                                        <p class="heading" title="Time">{{ station.tap_in }}</p>
+                                                        <p class="title has-text-grey-dark" title="Total Trips">{{ station.station_name }}</p>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endfor %}
+                                </section>
 
+                            </div>
+                        </div>
+                    </b-collapse>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}

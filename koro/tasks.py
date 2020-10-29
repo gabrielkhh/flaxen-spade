@@ -88,4 +88,4 @@ class ViewDispatcher:
 
     def popular_stations(self):
         results = JsonLoader().load_file("results/popular_stations.json")
-        return render_template("tasks/popular_stations.html")
+        return render_template("tasks/popular_stations.html", results=results)
