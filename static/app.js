@@ -150,25 +150,27 @@ Vue.component('mall-traffic-info', {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                xAxes: [
-                    {
-                        scaleLabel: {
-                            display: true,
-                            labelString: "Time of Day (Hour)",
+                scales: {
+                    xAxes: [
+                        {
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Time of Day (Hour)",
+                            },
                         },
-                    },
-                ],
-                yAxes: [
-                    {
-                        scaleLabel: {
-                            display: true,
-                            labelString: "Volume of People",
+                    ],
+                    yAxes: [
+                        {
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Volume of People",
+                            },
+                            ticks: {
+                                beginAtZero: true,
+                            },
                         },
-                        ticks: {
-                            beginAtZero: true,
-                        },
-                    },
-                ],
+                    ],
+                },
             },
         };
     },
@@ -288,7 +290,7 @@ Vue.component("mall-table", {
         };
     },
     watch: {
-        isWeekday: function() {
+        isWeekday: function () {
             // Do something
             if (this.isWeekday) {
                 this.data = this.obj["weekday"];
@@ -373,7 +375,7 @@ Vue.component("mall-list-table", {
     mounted() {
         var mallsData = JSON.parse(JSON.stringify(this.data));
         var mallsArr = [];
-        for (i = 0; i < this.data.length; i++)  {
+        for (i = 0; i < this.data.length; i++) {
             dict = {};
             var mallName = mallsData[i].name;
             var encodedName = encodeURI(mallName);
