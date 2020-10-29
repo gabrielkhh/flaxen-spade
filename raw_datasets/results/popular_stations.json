@@ -1,1 +1,978 @@
-[{"hour": 6, "stations": [{"pt_code": "NS10", "station_name": "Admiralty", "tap_in": "88408"}, {"pt_code": "NS11", "station_name": "Sembawang", "tap_in": "72238"}, {"pt_code": "NS13", "station_name": "Yishun", "tap_in": "72070"}, {"pt_code": "NS5", "station_name": "Yew Tee", "tap_in": "56096"}, {"pt_code": "EW26", "station_name": "Lakeside", "tap_in": "55794"}, {"pt_code": "EW27", "station_name": "Boon Lay", "tap_in": "55192"}, {"pt_code": "NS16", "station_name": "Ang Mo Kio", "tap_in": "53030"}, {"pt_code": "NS14", "station_name": "Khatib", "tap_in": "52011"}, {"pt_code": "NS4/BP1", "station_name": "Choa Chu Kang", "tap_in": "49987"}, {"pt_code": "NS9/TE2", "station_name": "Woodlands", "tap_in": "49870"}, {"pt_code": "EW28", "station_name": "Pioneer", "tap_in": "49090"}, {"pt_code": "EW2/DT32", "station_name": "Tampines", "tap_in": "42873"}, {"pt_code": "BP6/DT1", "station_name": "Bukit Panjang", "tap_in": "41899"}, {"pt_code": "NE17/PTC", "station_name": "Punggol", "tap_in": "41163"}, {"pt_code": "NE16/STC", "station_name": "Sengkang", "tap_in": "39984"}]}, {"hour": 7, "stations": [{"pt_code": "NS10", "station_name": "Admiralty", "tap_in": "123930"}, {"pt_code": "NS13", "station_name": "Yishun", "tap_in": "101097"}, {"pt_code": "NS11", "station_name": "Sembawang", "tap_in": "93859"}, {"pt_code": "EW27", "station_name": "Boon Lay", "tap_in": "83372"}, {"pt_code": "EW26", "station_name": "Lakeside", "tap_in": "81841"}, {"pt_code": "NS16", "station_name": "Ang Mo Kio", "tap_in": "81355"}, {"pt_code": "NS5", "station_name": "Yew Tee", "tap_in": "77549"}, {"pt_code": "EW28", "station_name": "Pioneer", "tap_in": "75499"}, {"pt_code": "NS14", "station_name": "Khatib", "tap_in": "71818"}, {"pt_code": "NS4/BP1", "station_name": "Choa Chu Kang", "tap_in": "71308"}, {"pt_code": "BP6/DT1", "station_name": "Bukit Panjang", "tap_in": "69098"}, {"pt_code": "NS9/TE2", "station_name": "Woodlands", "tap_in": "68926"}, {"pt_code": "EW2/DT32", "station_name": "Tampines", "tap_in": "66954"}, {"pt_code": "NE16/STC", "station_name": "Sengkang", "tap_in": "65750"}, {"pt_code": "NE17/PTC", "station_name": "Punggol", "tap_in": "60657"}]}, {"hour": 8, "stations": [{"pt_code": "NS10", "station_name": "Admiralty", "tap_in": "74378"}, {"pt_code": "NS13", "station_name": "Yishun", "tap_in": "71509"}, {"pt_code": "NS16", "station_name": "Ang Mo Kio", "tap_in": "65094"}, {"pt_code": "NS11", "station_name": "Sembawang", "tap_in": "59346"}, {"pt_code": "EW2/DT32", "station_name": "Tampines", "tap_in": "58574"}, {"pt_code": "NS14", "station_name": "Khatib", "tap_in": "53615"}, {"pt_code": "EW27", "station_name": "Boon Lay", "tap_in": "52934"}, {"pt_code": "NE16/STC", "station_name": "Sengkang", "tap_in": "52404"}, {"pt_code": "EW26", "station_name": "Lakeside", "tap_in": "52146"}, {"pt_code": "BP6/DT1", "station_name": "Bukit Panjang", "tap_in": "51533"}, {"pt_code": "NE14", "station_name": "Hougang", "tap_in": "48632"}, {"pt_code": "NE17/PTC", "station_name": "Punggol", "tap_in": "46171"}, {"pt_code": "NS9/TE2", "station_name": "Woodlands", "tap_in": "45568"}, {"pt_code": "EW1", "station_name": "Pasir Ris", "tap_in": "43718"}, {"pt_code": "NS21/DT11", "station_name": "Newton", "tap_in": "43393"}]}]
+{
+    "12": [
+        {
+            "pt_code": "EW24/NS1",
+            "station_name": "Jurong East",
+            "tap_in": "35061"
+        },
+        {
+            "pt_code": "NS13",
+            "station_name": "Yishun",
+            "tap_in": "33920"
+        },
+        {
+            "pt_code": "EW2/DT32",
+            "station_name": "Tampines",
+            "tap_in": "33272"
+        },
+        {
+            "pt_code": "NS10",
+            "station_name": "Admiralty",
+            "tap_in": "32652"
+        },
+        {
+            "pt_code": "NS16",
+            "station_name": "Ang Mo Kio",
+            "tap_in": "31973"
+        },
+        {
+            "pt_code": "NE4/DT19",
+            "station_name": "Chinatown",
+            "tap_in": "31631"
+        },
+        {
+            "pt_code": "NS21/DT11",
+            "station_name": "Newton",
+            "tap_in": "31077"
+        },
+        {
+            "pt_code": "NE16/STC",
+            "station_name": "Sengkang",
+            "tap_in": "29804"
+        },
+        {
+            "pt_code": "NS19",
+            "station_name": "Toa Payoh",
+            "tap_in": "28194"
+        },
+        {
+            "pt_code": "NS9/TE2",
+            "station_name": "Woodlands",
+            "tap_in": "27135"
+        },
+        {
+            "pt_code": "EW23",
+            "station_name": "Clementi",
+            "tap_in": "26569"
+        },
+        {
+            "pt_code": "NE17/PTC",
+            "station_name": "Punggol",
+            "tap_in": "26297"
+        },
+        {
+            "pt_code": "NS20",
+            "station_name": "Novena",
+            "tap_in": "25877"
+        },
+        {
+            "pt_code": "EW27",
+            "station_name": "Boon Lay",
+            "tap_in": "25168"
+        },
+        {
+            "pt_code": "NS4/BP1",
+            "station_name": "Choa Chu Kang",
+            "tap_in": "24748"
+        },
+        {
+            "pt_code": "NS22",
+            "station_name": "Orchard",
+            "tap_in": "24383"
+        },
+        {
+            "pt_code": "NS11",
+            "station_name": "Sembawang",
+            "tap_in": "23640"
+        },
+        {
+            "pt_code": "EW8/CC9",
+            "station_name": "Paya Lebar",
+            "tap_in": "23231"
+        },
+        {
+            "pt_code": "NS15",
+            "station_name": "Yio Chu Kang",
+            "tap_in": "23131"
+        },
+        {
+            "pt_code": "NS14",
+            "station_name": "Khatib",
+            "tap_in": "22801"
+        },
+        {
+            "pt_code": "BP6/DT1",
+            "station_name": "Bukit Panjang",
+            "tap_in": "22378"
+        },
+        {
+            "pt_code": "EW16/NE3",
+            "station_name": "Outram Park",
+            "tap_in": "22357"
+        },
+        {
+            "pt_code": "EW5",
+            "station_name": "Bedok",
+            "tap_in": "22186"
+        },
+        {
+            "pt_code": "EW12/DT14",
+            "station_name": "Bugis",
+            "tap_in": "21861"
+        }
+    ],
+    "18": [
+        {
+            "pt_code": "EW24/NS1",
+            "station_name": "Jurong East",
+            "tap_in": "136014"
+        },
+        {
+            "pt_code": "EW14/NS26",
+            "station_name": "Raffles Place",
+            "tap_in": "77262"
+        },
+        {
+            "pt_code": "EW27",
+            "station_name": "Boon Lay",
+            "tap_in": "68148"
+        },
+        {
+            "pt_code": "NS21/DT11",
+            "station_name": "Newton",
+            "tap_in": "65230"
+        },
+        {
+            "pt_code": "NS22",
+            "station_name": "Orchard",
+            "tap_in": "64513"
+        },
+        {
+            "pt_code": "NS20",
+            "station_name": "Novena",
+            "tap_in": "63520"
+        },
+        {
+            "pt_code": "NE4/DT19",
+            "station_name": "Chinatown",
+            "tap_in": "62096"
+        },
+        {
+            "pt_code": "EW23",
+            "station_name": "Clementi",
+            "tap_in": "60758"
+        },
+        {
+            "pt_code": "EW15",
+            "station_name": "Tanjong Pagar",
+            "tap_in": "58986"
+        },
+        {
+            "pt_code": "EW8/CC9",
+            "station_name": "Paya Lebar",
+            "tap_in": "58372"
+        },
+        {
+            "pt_code": "EW16/NE3",
+            "station_name": "Outram Park",
+            "tap_in": "56307"
+        },
+        {
+            "pt_code": "EW2/DT32",
+            "station_name": "Tampines",
+            "tap_in": "55394"
+        },
+        {
+            "pt_code": "EW12/DT14",
+            "station_name": "Bugis",
+            "tap_in": "52515"
+        },
+        {
+            "pt_code": "NS16",
+            "station_name": "Ang Mo Kio",
+            "tap_in": "52423"
+        },
+        {
+            "pt_code": "NS10",
+            "station_name": "Admiralty",
+            "tap_in": "51862"
+        },
+        {
+            "pt_code": "NS13",
+            "station_name": "Yishun",
+            "tap_in": "50110"
+        },
+        {
+            "pt_code": "EW29",
+            "station_name": "Joo Koon",
+            "tap_in": "46399"
+        },
+        {
+            "pt_code": "NS4/BP1",
+            "station_name": "Choa Chu Kang",
+            "tap_in": "46295"
+        },
+        {
+            "pt_code": "NS19",
+            "station_name": "Toa Payoh",
+            "tap_in": "45388"
+        },
+        {
+            "pt_code": "NE1/CC29",
+            "station_name": "HarbourFront",
+            "tap_in": "43978"
+        },
+        {
+            "pt_code": "NS9/TE2",
+            "station_name": "Woodlands",
+            "tap_in": "43906"
+        },
+        {
+            "pt_code": "CC11",
+            "station_name": "Tai Seng",
+            "tap_in": "43484"
+        },
+        {
+            "pt_code": "EW13/NS25",
+            "station_name": "City Hall",
+            "tap_in": "42966"
+        },
+        {
+            "pt_code": "NS11",
+            "station_name": "Sembawang",
+            "tap_in": "42872"
+        }
+    ],
+    "19": [
+        {
+            "pt_code": "EW24/NS1",
+            "station_name": "Jurong East",
+            "tap_in": "83641"
+        },
+        {
+            "pt_code": "NS22",
+            "station_name": "Orchard",
+            "tap_in": "54295"
+        },
+        {
+            "pt_code": "EW14/NS26",
+            "station_name": "Raffles Place",
+            "tap_in": "49707"
+        },
+        {
+            "pt_code": "NE4/DT19",
+            "station_name": "Chinatown",
+            "tap_in": "48231"
+        },
+        {
+            "pt_code": "NS21/DT11",
+            "station_name": "Newton",
+            "tap_in": "43111"
+        },
+        {
+            "pt_code": "EW8/CC9",
+            "station_name": "Paya Lebar",
+            "tap_in": "41745"
+        },
+        {
+            "pt_code": "EW2/DT32",
+            "station_name": "Tampines",
+            "tap_in": "41000"
+        },
+        {
+            "pt_code": "EW12/DT14",
+            "station_name": "Bugis",
+            "tap_in": "40665"
+        },
+        {
+            "pt_code": "EW15",
+            "station_name": "Tanjong Pagar",
+            "tap_in": "39210"
+        },
+        {
+            "pt_code": "EW27",
+            "station_name": "Boon Lay",
+            "tap_in": "36338"
+        },
+        {
+            "pt_code": "NE1/CC29",
+            "station_name": "HarbourFront",
+            "tap_in": "36263"
+        },
+        {
+            "pt_code": "EW23",
+            "station_name": "Clementi",
+            "tap_in": "36236"
+        },
+        {
+            "pt_code": "EW13/NS25",
+            "station_name": "City Hall",
+            "tap_in": "36103"
+        },
+        {
+            "pt_code": "NS16",
+            "station_name": "Ang Mo Kio",
+            "tap_in": "36048"
+        },
+        {
+            "pt_code": "NS20",
+            "station_name": "Novena",
+            "tap_in": "36014"
+        },
+        {
+            "pt_code": "NS13",
+            "station_name": "Yishun",
+            "tap_in": "32830"
+        },
+        {
+            "pt_code": "NS24/NE6/CC1",
+            "station_name": "Dhoby Ghaut",
+            "tap_in": "31384"
+        },
+        {
+            "pt_code": "NS10",
+            "station_name": "Admiralty",
+            "tap_in": "31382"
+        },
+        {
+            "pt_code": "NS19",
+            "station_name": "Toa Payoh",
+            "tap_in": "29879"
+        },
+        {
+            "pt_code": "NS9/TE2",
+            "station_name": "Woodlands",
+            "tap_in": "29040"
+        },
+        {
+            "pt_code": "NS23",
+            "station_name": "Somerset",
+            "tap_in": "28504"
+        },
+        {
+            "pt_code": "NE16/STC",
+            "station_name": "Sengkang",
+            "tap_in": "27581"
+        },
+        {
+            "pt_code": "EW16/NE3",
+            "station_name": "Outram Park",
+            "tap_in": "26943"
+        },
+        {
+            "pt_code": "NS11",
+            "station_name": "Sembawang",
+            "tap_in": "26535"
+        }
+    ],
+    "20": [
+        {
+            "pt_code": "EW24/NS1",
+            "station_name": "Jurong East",
+            "tap_in": "83719"
+        },
+        {
+            "pt_code": "NS22",
+            "station_name": "Orchard",
+            "tap_in": "61957"
+        },
+        {
+            "pt_code": "NE4/DT19",
+            "station_name": "Chinatown",
+            "tap_in": "42185"
+        },
+        {
+            "pt_code": "EW12/DT14",
+            "station_name": "Bugis",
+            "tap_in": "38693"
+        },
+        {
+            "pt_code": "EW8/CC9",
+            "station_name": "Paya Lebar",
+            "tap_in": "36776"
+        },
+        {
+            "pt_code": "NE1/CC29",
+            "station_name": "HarbourFront",
+            "tap_in": "36473"
+        },
+        {
+            "pt_code": "EW13/NS25",
+            "station_name": "City Hall",
+            "tap_in": "34988"
+        },
+        {
+            "pt_code": "NS23",
+            "station_name": "Somerset",
+            "tap_in": "33761"
+        },
+        {
+            "pt_code": "NS24/NE6/CC1",
+            "station_name": "Dhoby Ghaut",
+            "tap_in": "32242"
+        },
+        {
+            "pt_code": "EW2/DT32",
+            "station_name": "Tampines",
+            "tap_in": "31176"
+        },
+        {
+            "pt_code": "NS21/DT11",
+            "station_name": "Newton",
+            "tap_in": "30888"
+        },
+        {
+            "pt_code": "EW14/NS26",
+            "station_name": "Raffles Place",
+            "tap_in": "29357"
+        },
+        {
+            "pt_code": "NS13",
+            "station_name": "Yishun",
+            "tap_in": "27642"
+        },
+        {
+            "pt_code": "EW15",
+            "station_name": "Tanjong Pagar",
+            "tap_in": "26639"
+        },
+        {
+            "pt_code": "EW27",
+            "station_name": "Boon Lay",
+            "tap_in": "26461"
+        },
+        {
+            "pt_code": "NS20",
+            "station_name": "Novena",
+            "tap_in": "26357"
+        },
+        {
+            "pt_code": "EW23",
+            "station_name": "Clementi",
+            "tap_in": "26209"
+        },
+        {
+            "pt_code": "NS9/TE2",
+            "station_name": "Woodlands",
+            "tap_in": "24928"
+        },
+        {
+            "pt_code": "NS16",
+            "station_name": "Ang Mo Kio",
+            "tap_in": "24342"
+        },
+        {
+            "pt_code": "CE1/DT16",
+            "station_name": "Bayfront",
+            "tap_in": "20921"
+        },
+        {
+            "pt_code": "NE16/STC",
+            "station_name": "Sengkang",
+            "tap_in": "19807"
+        },
+        {
+            "pt_code": "EW29",
+            "station_name": "Joo Koon",
+            "tap_in": "19518"
+        },
+        {
+            "pt_code": "NS19",
+            "station_name": "Toa Payoh",
+            "tap_in": "19206"
+        },
+        {
+            "pt_code": "NS10",
+            "station_name": "Admiralty",
+            "tap_in": "19185"
+        }
+    ],
+    "6": [
+        {
+            "pt_code": "NS10",
+            "station_name": "Admiralty",
+            "tap_in": "88408"
+        },
+        {
+            "pt_code": "NS11",
+            "station_name": "Sembawang",
+            "tap_in": "72238"
+        },
+        {
+            "pt_code": "NS13",
+            "station_name": "Yishun",
+            "tap_in": "72070"
+        },
+        {
+            "pt_code": "NS5",
+            "station_name": "Yew Tee",
+            "tap_in": "56096"
+        },
+        {
+            "pt_code": "EW26",
+            "station_name": "Lakeside",
+            "tap_in": "55794"
+        },
+        {
+            "pt_code": "EW27",
+            "station_name": "Boon Lay",
+            "tap_in": "55192"
+        },
+        {
+            "pt_code": "NS16",
+            "station_name": "Ang Mo Kio",
+            "tap_in": "53030"
+        },
+        {
+            "pt_code": "NS14",
+            "station_name": "Khatib",
+            "tap_in": "52011"
+        },
+        {
+            "pt_code": "NS4/BP1",
+            "station_name": "Choa Chu Kang",
+            "tap_in": "49987"
+        },
+        {
+            "pt_code": "NS9/TE2",
+            "station_name": "Woodlands",
+            "tap_in": "49870"
+        },
+        {
+            "pt_code": "EW28",
+            "station_name": "Pioneer",
+            "tap_in": "49090"
+        },
+        {
+            "pt_code": "EW2/DT32",
+            "station_name": "Tampines",
+            "tap_in": "42873"
+        },
+        {
+            "pt_code": "BP6/DT1",
+            "station_name": "Bukit Panjang",
+            "tap_in": "41899"
+        },
+        {
+            "pt_code": "NE17/PTC",
+            "station_name": "Punggol",
+            "tap_in": "41163"
+        },
+        {
+            "pt_code": "NE16/STC",
+            "station_name": "Sengkang",
+            "tap_in": "39984"
+        },
+        {
+            "pt_code": "NS2",
+            "station_name": "Bukit Batok",
+            "tap_in": "37861"
+        },
+        {
+            "pt_code": "NS8",
+            "station_name": "Marsiling",
+            "tap_in": "36216"
+        },
+        {
+            "pt_code": "EW1",
+            "station_name": "Pasir Ris",
+            "tap_in": "36091"
+        },
+        {
+            "pt_code": "NE14",
+            "station_name": "Hougang",
+            "tap_in": "34554"
+        },
+        {
+            "pt_code": "EW23",
+            "station_name": "Clementi",
+            "tap_in": "34294"
+        },
+        {
+            "pt_code": "NS3",
+            "station_name": "Bukit Gombak",
+            "tap_in": "32773"
+        },
+        {
+            "pt_code": "EW5",
+            "station_name": "Bedok",
+            "tap_in": "32231"
+        },
+        {
+            "pt_code": "NS19",
+            "station_name": "Toa Payoh",
+            "tap_in": "28314"
+        },
+        {
+            "pt_code": "EW17",
+            "station_name": "Tiong Bahru",
+            "tap_in": "27828"
+        }
+    ],
+    "7": [
+        {
+            "pt_code": "NS10",
+            "station_name": "Admiralty",
+            "tap_in": "123930"
+        },
+        {
+            "pt_code": "NS13",
+            "station_name": "Yishun",
+            "tap_in": "101097"
+        },
+        {
+            "pt_code": "NS11",
+            "station_name": "Sembawang",
+            "tap_in": "93859"
+        },
+        {
+            "pt_code": "EW27",
+            "station_name": "Boon Lay",
+            "tap_in": "83372"
+        },
+        {
+            "pt_code": "EW26",
+            "station_name": "Lakeside",
+            "tap_in": "81841"
+        },
+        {
+            "pt_code": "NS16",
+            "station_name": "Ang Mo Kio",
+            "tap_in": "81355"
+        },
+        {
+            "pt_code": "NS5",
+            "station_name": "Yew Tee",
+            "tap_in": "77549"
+        },
+        {
+            "pt_code": "EW28",
+            "station_name": "Pioneer",
+            "tap_in": "75499"
+        },
+        {
+            "pt_code": "NS14",
+            "station_name": "Khatib",
+            "tap_in": "71818"
+        },
+        {
+            "pt_code": "NS4/BP1",
+            "station_name": "Choa Chu Kang",
+            "tap_in": "71308"
+        },
+        {
+            "pt_code": "BP6/DT1",
+            "station_name": "Bukit Panjang",
+            "tap_in": "69098"
+        },
+        {
+            "pt_code": "NS9/TE2",
+            "station_name": "Woodlands",
+            "tap_in": "68926"
+        },
+        {
+            "pt_code": "EW2/DT32",
+            "station_name": "Tampines",
+            "tap_in": "66954"
+        },
+        {
+            "pt_code": "NE16/STC",
+            "station_name": "Sengkang",
+            "tap_in": "65750"
+        },
+        {
+            "pt_code": "NE17/PTC",
+            "station_name": "Punggol",
+            "tap_in": "60657"
+        },
+        {
+            "pt_code": "NE14",
+            "station_name": "Hougang",
+            "tap_in": "54901"
+        },
+        {
+            "pt_code": "NS2",
+            "station_name": "Bukit Batok",
+            "tap_in": "54476"
+        },
+        {
+            "pt_code": "EW1",
+            "station_name": "Pasir Ris",
+            "tap_in": "52296"
+        },
+        {
+            "pt_code": "EW23",
+            "station_name": "Clementi",
+            "tap_in": "51634"
+        },
+        {
+            "pt_code": "NS8",
+            "station_name": "Marsiling",
+            "tap_in": "49921"
+        },
+        {
+            "pt_code": "EW5",
+            "station_name": "Bedok",
+            "tap_in": "45170"
+        },
+        {
+            "pt_code": "NS3",
+            "station_name": "Bukit Gombak",
+            "tap_in": "45065"
+        },
+        {
+            "pt_code": "NS19",
+            "station_name": "Toa Payoh",
+            "tap_in": "41819"
+        },
+        {
+            "pt_code": "EW24/NS1",
+            "station_name": "Jurong East",
+            "tap_in": "40729"
+        }
+    ],
+    "8": [
+        {
+            "pt_code": "NS10",
+            "station_name": "Admiralty",
+            "tap_in": "74378"
+        },
+        {
+            "pt_code": "NS13",
+            "station_name": "Yishun",
+            "tap_in": "71509"
+        },
+        {
+            "pt_code": "NS16",
+            "station_name": "Ang Mo Kio",
+            "tap_in": "65094"
+        },
+        {
+            "pt_code": "NS11",
+            "station_name": "Sembawang",
+            "tap_in": "59346"
+        },
+        {
+            "pt_code": "EW2/DT32",
+            "station_name": "Tampines",
+            "tap_in": "58574"
+        },
+        {
+            "pt_code": "NS14",
+            "station_name": "Khatib",
+            "tap_in": "53615"
+        },
+        {
+            "pt_code": "EW27",
+            "station_name": "Boon Lay",
+            "tap_in": "52934"
+        },
+        {
+            "pt_code": "NE16/STC",
+            "station_name": "Sengkang",
+            "tap_in": "52404"
+        },
+        {
+            "pt_code": "EW26",
+            "station_name": "Lakeside",
+            "tap_in": "52146"
+        },
+        {
+            "pt_code": "BP6/DT1",
+            "station_name": "Bukit Panjang",
+            "tap_in": "51533"
+        },
+        {
+            "pt_code": "NE14",
+            "station_name": "Hougang",
+            "tap_in": "48632"
+        },
+        {
+            "pt_code": "NE17/PTC",
+            "station_name": "Punggol",
+            "tap_in": "46171"
+        },
+        {
+            "pt_code": "NS9/TE2",
+            "station_name": "Woodlands",
+            "tap_in": "45568"
+        },
+        {
+            "pt_code": "EW1",
+            "station_name": "Pasir Ris",
+            "tap_in": "43718"
+        },
+        {
+            "pt_code": "NS21/DT11",
+            "station_name": "Newton",
+            "tap_in": "43393"
+        },
+        {
+            "pt_code": "NS4/BP1",
+            "station_name": "Choa Chu Kang",
+            "tap_in": "43249"
+        },
+        {
+            "pt_code": "NS5",
+            "station_name": "Yew Tee",
+            "tap_in": "43162"
+        },
+        {
+            "pt_code": "EW5",
+            "station_name": "Bedok",
+            "tap_in": "40915"
+        },
+        {
+            "pt_code": "EW23",
+            "station_name": "Clementi",
+            "tap_in": "38678"
+        },
+        {
+            "pt_code": "EW28",
+            "station_name": "Pioneer",
+            "tap_in": "38618"
+        },
+        {
+            "pt_code": "NS19",
+            "station_name": "Toa Payoh",
+            "tap_in": "38437"
+        },
+        {
+            "pt_code": "EW24/NS1",
+            "station_name": "Jurong East",
+            "tap_in": "37372"
+        },
+        {
+            "pt_code": "NE12/CC13",
+            "station_name": "Serangoon",
+            "tap_in": "34406"
+        },
+        {
+            "pt_code": "DT33",
+            "station_name": "Tampines East",
+            "tap_in": "32335"
+        }
+    ],
+    "9": [
+        {
+            "pt_code": "NS13",
+            "station_name": "Yishun",
+            "tap_in": "49468"
+        },
+        {
+            "pt_code": "NS10",
+            "station_name": "Admiralty",
+            "tap_in": "48146"
+        },
+        {
+            "pt_code": "NS16",
+            "station_name": "Ang Mo Kio",
+            "tap_in": "46617"
+        },
+        {
+            "pt_code": "EW2/DT32",
+            "station_name": "Tampines",
+            "tap_in": "38038"
+        },
+        {
+            "pt_code": "NS14",
+            "station_name": "Khatib",
+            "tap_in": "36815"
+        },
+        {
+            "pt_code": "NS11",
+            "station_name": "Sembawang",
+            "tap_in": "36237"
+        },
+        {
+            "pt_code": "NE16/STC",
+            "station_name": "Sengkang",
+            "tap_in": "35750"
+        },
+        {
+            "pt_code": "NE14",
+            "station_name": "Hougang",
+            "tap_in": "34394"
+        },
+        {
+            "pt_code": "NS21/DT11",
+            "station_name": "Newton",
+            "tap_in": "32314"
+        },
+        {
+            "pt_code": "BP6/DT1",
+            "station_name": "Bukit Panjang",
+            "tap_in": "31793"
+        },
+        {
+            "pt_code": "NS19",
+            "station_name": "Toa Payoh",
+            "tap_in": "31527"
+        },
+        {
+            "pt_code": "EW27",
+            "station_name": "Boon Lay",
+            "tap_in": "30929"
+        },
+        {
+            "pt_code": "NS9/TE2",
+            "station_name": "Woodlands",
+            "tap_in": "29986"
+        },
+        {
+            "pt_code": "NE17/PTC",
+            "station_name": "Punggol",
+            "tap_in": "29893"
+        },
+        {
+            "pt_code": "EW5",
+            "station_name": "Bedok",
+            "tap_in": "29396"
+        },
+        {
+            "pt_code": "EW26",
+            "station_name": "Lakeside",
+            "tap_in": "28573"
+        },
+        {
+            "pt_code": "EW1",
+            "station_name": "Pasir Ris",
+            "tap_in": "28532"
+        },
+        {
+            "pt_code": "NS4/BP1",
+            "station_name": "Choa Chu Kang",
+            "tap_in": "26928"
+        },
+        {
+            "pt_code": "EW23",
+            "station_name": "Clementi",
+            "tap_in": "25944"
+        },
+        {
+            "pt_code": "EW24/NS1",
+            "station_name": "Jurong East",
+            "tap_in": "24909"
+        },
+        {
+            "pt_code": "NS5",
+            "station_name": "Yew Tee",
+            "tap_in": "24835"
+        },
+        {
+            "pt_code": "NS8",
+            "station_name": "Marsiling",
+            "tap_in": "22873"
+        },
+        {
+            "pt_code": "NE12/CC13",
+            "station_name": "Serangoon",
+            "tap_in": "22724"
+        },
+        {
+            "pt_code": "EW28",
+            "station_name": "Pioneer",
+            "tap_in": "20033"
+        }
+    ]
+}

@@ -88,4 +88,16 @@ class ViewDispatcher:
 
     def popular_stations(self):
         results = JsonLoader().load_file("results/popular_stations.json")
+
+        if filter_by := request.args.get("filter"):
+            new = {}
+            for key, stations in results.items():
+                new[key] = [
+                    station
+                    for station in stations
+                    if filter_by in station["station_name"]
+                ]
+
+            results = new
+
         return render_template("tasks/popular_stations.html", results=results)

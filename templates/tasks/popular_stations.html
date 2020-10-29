@@ -4,11 +4,19 @@
     <div class="column">
         <div class="column pb-2 is-full">
             <h1 class="title">Popular MRT Stations during morning peak hours</h1>
-            <h2 class="subtitle">From 6 - 8 am</h2>
+            <h2 class="subtitle">6 to 9am, 12pm and 6 to 8pm</h2>
+            <form method="GET">
+                <b-field label="Search..." label-position="on-border">
+                    <b-input name="filter" placeholder="Station Name" type="search" value="{{ request.args.get('filter') or '' }}"></b-input>
+                    <p class="control">
+                        <b-button tag="button" native-type="submit" class="button is-primary">Search</b-button>
+                    </p>
+                </b-field>
+            </form>
         </div>
         <div class="column section is-full">
             <div class="column">
-                {% for stations in results %}
+                {% for hour, stations in results.items() %}
                     <b-collapse class="card" animation="slide" :open="false">
                         <div
                                 slot="trigger"
@@ -16,7 +24,7 @@
                                 class="card-header"
                         >
                             <p class="card-header-title">
-                                {{ stations.hour }} am
+                                {{ hour }}
                             </p>
                             <a class="card-header-icon">
                                 <b-icon :icon="props.open ? 'menu-up' : 'menu-down'"></b-icon>
@@ -25,17 +33,19 @@
                         <div class="card-content">
                             <div class="content">
                                 <section class="pt-1">
-                                    {% for row in stations.stations|batch(4, '&nbsp;') %}
+                                    {% for row in stations|batch(4, '&nbsp;') %}
                                         <div class="levels columns">
                                             {% for station in row %}
                                                 <div class="level-item has-text-centered column">
                                                     <div>
-                                                        <p class="heading" title="Time">{{ station.tap_in }}</p>
-                                                        <p class="title has-text-grey-dark" title="Total Trips">{{ station.station_name }}</p>
+                                                        <p class="heading" title="Total Trips">{{ station.tap_in }}</p>
+                                                        <p class="title has-text-grey-dark" title="Station">{{ station.station_name }}</p>
                                                     </div>
                                                 </div>
                                             {% endfor %}
                                         </div>
+                                    {% else %}
+                                        <p class="heading">No data available!</p>
                                     {% endfor %}
                                 </section>
 

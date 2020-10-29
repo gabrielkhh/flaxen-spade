@@ -152,8 +152,12 @@ def available_tasks(slug):
     return ViewDispatcher().dispatch(slug)
 
 
-@app.route('/export/<slug>')
+@app.route("/export/<slug>")
 def available_task_export(slug):
     task = TaskBuilder().find_task(slug)
 
-    return send_file(dataset_path(f"results/{task.filename}"), mimetype="application/octet-stream", as_attachment=True)
+    return send_file(
+        dataset_path(f"results/{task.filename}"),
+        mimetype="application/octet-stream",
+        as_attachment=True,
+    )
