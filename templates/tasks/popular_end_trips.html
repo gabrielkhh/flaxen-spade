@@ -2,14 +2,14 @@
 {% block title %}Popular End Trips{% endblock %}
 {% block content %}
     <div class="column">
-        <div class="column section pb-2 is-full">
+        <div class="column pb-1 is-full">
             <div class="container">
                 <h1 class="title">Popular late night end trips</h1>
                 <form method="GET">
                     <b-field label="Search..." label-position="on-border">
                         <b-input name="filter" placeholder="Search..." type="search" value="{{ request.args.get('filter') or '' }}"></b-input>
                         <p class="control">
-                            <b-button class="button is-primary">Search</b-button>
+                            <b-button tag="button" native-type="submit" class="button is-primary">Search</b-button>
                         </p>
                     </b-field>
                 </form>
@@ -55,13 +55,9 @@
                                                     <div>
                                                         <p class="heading">{{ weekday.hour }}</p>
                                                         <p class="title has-text-grey-dark">
-                                                            <span title="Tap In">
-                                                            {{ weekday.tap_in }}
-                                                            </span>
+                                                            <span title="Tap In">{{ weekday.tap_in }}</span>
                                                             /
-                                                            <span title="Tap Out">
-                                                            {{ weekday.tap_out }}
-                                                            </span>
+                                                            <span title="Tap Out">{{ weekday.tap_out }}</span>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -76,7 +72,9 @@
                                                 <div class="level-item has-text-centered column">
                                                     <div>
                                                         <p class="heading">{{ weekend.hour }}</p>
-                                                        <p class="title has-text-grey-dark">{{ weekend.tap_in }}/{{ weekend.tap_out }}</p>
+                                                        <span title="Tap In">{{ weekend.tap_in }}</span>
+                                                        /
+                                                        <span title="Tap Out">{{ weekend.tap_out }}</span>
                                                     </div>
                                                 </div>
                                             {% else %}

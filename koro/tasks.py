@@ -50,10 +50,26 @@ class ViewDispatcher:
 
     def best_time_to_travel(self):
         results = JsonLoader().load_file("results/best_time_to_travel.json")
+
+        if filter_by := request.args.get("filter"):
+            results = {
+                key: value
+                for key, value in results.items()
+                if filter_by.upper() in key
+            }
+
         return render_template("tasks/best_time.html", results=results)
 
     def popular_mrt_routes_on_weekends(self):
-        results = JsonLoader().load_file("results/pop_mrt_routes_on_weekends.json")
+        results = JsonLoader().load_file("results/pop_mrt_routes_on_weekends_publicholiday.json")
+
+        if filter_by := request.args.get("filter"):
+            results = {
+                key: value
+                for key, value in results.items()
+                if filter_by.upper() in key
+            }
+
         return render_template("tasks/popular_mrt_routes.html", results=results)
 
     def popular_end_trips(self):
@@ -65,7 +81,7 @@ class ViewDispatcher:
                 new["month"] = {
                     key: value
                     for key, value in results[month].items()
-                    if filter_by in key
+                    if filter_by.upper() in key
                 }
 
             results = new

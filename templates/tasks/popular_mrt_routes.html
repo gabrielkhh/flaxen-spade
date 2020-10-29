@@ -2,7 +2,82 @@
 {% block title %}Popular MRT Routes{% endblock %}
 {% block content %}
     <div class="column">
-        <h1 class="title">Tasks</h1>
+        <div class="column pb-2 is-full">
+            <h1 class="title">Popular MRT routes on Weekends and Weekdays</h1>
+            <h2 class="subtitle"></h2>
+            <form method="GET">
+                <b-field label="Search..." label-position="on-border">
+                    <b-input name="filter" placeholder="Search..." type="search" value="{{ request.args.get('filter') or '' }}"></b-input>
+                    <p class="control">
+                        <b-button tag="button" native-type="submit" class="button is-primary">Search</b-button>
+                    </p>
+                </b-field>
+            </form>
+        </div>
+        <div class="column section is-full">
+            <h3 class="title">Stations</h3>
 
+            <div class="column">
+                {% for station, week in results.items() %}
+                    <b-collapse class="card" animation="slide" :open="false">
+                        <div
+                                slot="trigger"
+                                slot-scope="props"
+                                class="card-header"
+                        >
+                            <p class="card-header-title">
+                                {{ station }}
+                            </p>
+                            <a class="card-header-icon">
+                                <b-icon :icon="props.open ? 'menu-down' : 'menu-up'"></b-icon>
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                <h2 class="title"></h2>
+                                <section class="pt-1">
+                                    <div class="levels columns">
+                                        <p class="heading">Weekdays</p>
+                                        {% for weekday in week.weekday %}
+                                            <div class="level-item has-text-centered column">
+                                                <div>
+                                                    <p class="heading">
+                                                        <span title="Tap In">{{ weekday.tap_in }}</span>
+                                                        /
+                                                        <span title="Tap Out">{{ weekday.tap_out }}</span>
+                                                    </p>
+                                                    <p class="title has-text-grey-dark">{{ weekday.hour }}</p>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <p class="title has-text-grey-dark">No data!</p>
+                                        {% endfor %}
+                                    </div>
+                                    <hr class="divider">
+                                    <div class="levels columns">
+                                        <p class="heading">Weekends</p>
+                                        {% for weekend in week.weekend %}
+                                            <div class="level-item has-text-centered column">
+                                                <div>
+                                                    <p class="heading">
+                                                        <span title="Tap In">{{ weekend.tap_in }}</span>
+                                                        /
+                                                        <span title="Tap Out">{{ weekend.tap_out }}</span>
+                                                    </p>
+                                                    <p class="title has-text-grey-dark">{{ weekend.hour }}</p>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <p class="title has-text-grey-dark">No data!</p>
+                                        {% endfor %}
+                                    </div>
+                                </section>
+
+                            </div>
+                        </div>
+                    </b-collapse>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}
