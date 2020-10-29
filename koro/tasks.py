@@ -53,21 +53,19 @@ class ViewDispatcher:
 
         if filter_by := request.args.get("filter"):
             results = {
-                key: value
-                for key, value in results.items()
-                if filter_by.upper() in key
+                key: value for key, value in results.items() if filter_by.upper() in key
             }
 
         return render_template("tasks/best_time.html", results=results)
 
     def popular_mrt_routes_on_weekends(self):
-        results = JsonLoader().load_file("results/pop_mrt_routes_on_weekends_publicholiday.json")
+        results = JsonLoader().load_file(
+            "results/pop_mrt_routes_on_weekends_publicholiday.json"
+        )
 
         if filter_by := request.args.get("filter"):
             results = {
-                key: value
-                for key, value in results.items()
-                if filter_by.upper() in key
+                key: value for key, value in results.items() if filter_by.upper() in key
             }
 
         return render_template("tasks/popular_mrt_routes.html", results=results)

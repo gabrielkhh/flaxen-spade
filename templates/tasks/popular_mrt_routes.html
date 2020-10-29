@@ -4,10 +4,10 @@
     <div class="column">
         <div class="column pb-2 is-full">
             <h1 class="title">Popular MRT routes on Weekends and Weekdays</h1>
-            <h2 class="subtitle"></h2>
+            <h2 class="subtitle">Popular Routes</h2>
             <form method="GET">
                 <b-field label="Search..." label-position="on-border">
-                    <b-input name="filter" placeholder="Search..." type="search" value="{{ request.args.get('filter') or '' }}"></b-input>
+                    <b-input name="filter" placeholder="Station Code" type="search" value="{{ request.args.get('filter') or '' }}"></b-input>
                     <p class="control">
                         <b-button tag="button" native-type="submit" class="button is-primary">Search</b-button>
                     </p>
@@ -19,6 +19,7 @@
 
             <div class="column">
                 {% for station, week in results.items() %}
+                    {% set from, to = station.split(':') %}
                     <b-collapse class="card" animation="slide" :open="false">
                         <div
                                 slot="trigger"
@@ -26,45 +27,21 @@
                                 class="card-header"
                         >
                             <p class="card-header-title">
-                                {{ station }}
+                                {{ from }} to {{ to }}
                             </p>
                             <a class="card-header-icon">
-                                <b-icon :icon="props.open ? 'menu-down' : 'menu-up'"></b-icon>
+                                <b-icon :icon="props.open ? 'menu-up' : 'menu-down'"></b-icon>
                             </a>
                         </div>
                         <div class="card-content">
                             <div class="content">
-                                <h2 class="title"></h2>
                                 <section class="pt-1">
                                     <div class="levels columns">
-                                        <p class="heading">Weekdays</p>
-                                        {% for weekday in week.weekday %}
-                                            <div class="level-item has-text-centered column">
-                                                <div>
-                                                    <p class="heading">
-                                                        <span title="Tap In">{{ weekday.tap_in }}</span>
-                                                        /
-                                                        <span title="Tap Out">{{ weekday.tap_out }}</span>
-                                                    </p>
-                                                    <p class="title has-text-grey-dark">{{ weekday.hour }}</p>
-                                                </div>
-                                            </div>
-                                        {% else %}
-                                            <p class="title has-text-grey-dark">No data!</p>
-                                        {% endfor %}
-                                    </div>
-                                    <hr class="divider">
-                                    <div class="levels columns">
-                                        <p class="heading">Weekends</p>
                                         {% for weekend in week.weekend %}
                                             <div class="level-item has-text-centered column">
                                                 <div>
-                                                    <p class="heading">
-                                                        <span title="Tap In">{{ weekend.tap_in }}</span>
-                                                        /
-                                                        <span title="Tap Out">{{ weekend.tap_out }}</span>
-                                                    </p>
-                                                    <p class="title has-text-grey-dark">{{ weekend.hour }}</p>
+                                                    <p class="heading" title="Time">{{ weekend.time }}</p>
+                                                    <p class="title has-text-grey-dark" title="Total Trips">{{ weekend.totaltrip }}</p>
                                                 </div>
                                             </div>
                                         {% else %}
