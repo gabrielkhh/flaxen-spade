@@ -150,26 +150,25 @@ Vue.component('mall-traffic-info', {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                    xAxes: [
-                        {
-                            scaleLabel: {
-                                display: true,
-                                labelString: "Time of Day (Hour)"
-                            }
+                xAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Time of Day (Hour)",
                         },
-                    ],
-                    yAxes: [
-                        {
-                            scaleLabel: {
-                                display: true,
-                                labelString: "Volume of People"
-                            },
-                            ticks: {
-                                beginAtZero: true,
-                            },
+                    },
+                ],
+                yAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Volume of People",
                         },
-                    ],
-                },
+                        ticks: {
+                            beginAtZero: true,
+                        },
+                    },
+                ],
             },
         };
     },
@@ -201,15 +200,15 @@ Vue.component('mall-traffic-info-second', {
                         {
                             scaleLabel: {
                                 display: true,
-                                labelString: "Time of Day (Hour)"
-                            }
+                                labelString: "Time of Day (Hour)",
+                            },
                         },
                     ],
                     yAxes: [
                         {
                             scaleLabel: {
                                 display: true,
-                                labelString: "Volume of People"
+                                labelString: "Volume of People",
                             },
                             ticks: {
                                 beginAtZero: true,
@@ -247,30 +246,30 @@ Vue.component("day-type-selector", {
     template: '#toggle-day-type',
     data() {
         return {
-            isWeekday: true
-        }
+            isWeekday: true,
+        };
     },
     methods: {
         toggleDayType() {
             this.isWeekday = !this.isWeekday;
             bus.$emit('changedDayType');
 
-        }
-    }
+        },
+    },
 });
 
 Vue.component("mall-graphs", {
     template: '#mall-graphs',
     data() {
         return {
-            isWeekday: true
-        }
+            isWeekday: true,
+        };
     },
     created() {
         bus.$on('changedDayType', () => {
             this.isWeekday = !this.isWeekday;
         });
-    }
+    },
 });
 
 Vue.component("mall-table", {
@@ -285,25 +284,25 @@ Vue.component("mall-table", {
             sortIconSize: 'is-small',
             isStriped: true,
             isWeekday: true,
-            obj: this.tableData
-        }
+            obj: this.tableData,
+        };
     },
     watch: {
-        isWeekday: function () {
+        isWeekday: function() {
             // Do something
             if (this.isWeekday) {
                 this.data = this.obj["weekday"];
             } else {
                 this.data = this.obj["weekend"];
             }
-        }
+        },
     },
     created() {
         this.data = this.obj["weekday"];
         bus.$on('changedDayType', () => {
             this.isWeekday = !this.isWeekday;
         });
-    }
+    },
 });
 
 Vue.component("mall-list-table", {
@@ -323,17 +322,17 @@ Vue.component("mall-list-table", {
                     field: 'url',
                     label: 'Link',
                     width: '500',
-                }
+                },
             ],
             isBordered: false,
             isHoverable: true,
-            isStriped: true
-        }
+            isStriped: true,
+        };
     },
     mounted() {
         var mallsData = JSON.parse(JSON.stringify(this.data));
         var mallsArr = [];
-        for (i = 0; i < this.data.length; i++)  {
+        for (i = 0; i < this.data.length; i ++) {
             dict = {};
             var mallName = mallsData[i].name;
             var encodedName = encodeURI(mallName);
@@ -344,7 +343,7 @@ Vue.component("mall-list-table", {
             mallsArr.push(dict);
         }
         this.data = mallsArr;
-    }
+    },
 });
 
 const bus = new Vue();
