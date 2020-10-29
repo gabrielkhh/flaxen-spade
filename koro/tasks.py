@@ -95,7 +95,7 @@ class ViewDispatcher:
                 new[key] = [
                     station
                     for station in stations
-                    if filter_by in station["station_name"]
+                    if filter_by in station["station_name"].lower()
                 ]
 
             results = new
