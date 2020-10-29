@@ -3,8 +3,8 @@
 {% block content %}
     <div class="column">
         <div class="column pb-2 is-full">
-            <h1 class="title">Popular MRT routes on Weekends and Weekdays</h1>
-            <h2 class="subtitle">Popular Routes</h2>
+            <h1 class="title">Popular MRT routes on Weekends and Public Holidays</h1>
+            <h2 class="subtitle">Popular travel routes</h2>
             <form method="GET">
                 <b-field label="Search..." label-position="on-border">
                     <b-input name="filter" placeholder="Station Code" type="search" value="{{ request.args.get('filter') or '' }}"></b-input>
