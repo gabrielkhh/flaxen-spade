@@ -1,7 +1,7 @@
 import re
 from typing import Optional
 
-from flask import render_template, request
+from flask import redirect, render_template, request, url_for
 
 from koro.dataset import JsonLoader
 from koro.manipulation import first_true
@@ -27,6 +27,7 @@ class TaskBuilder:
             ),
             Task("Popular End Trips", "popular_end_trip.json"),
             Task("Popular Stations", "popular_stations.json"),
+            Task("Shopping Mall traffic", "shopping-mall-passenger-volume.json"),
         ]
 
     def find_task(self, slug) -> Optional[Task]:
@@ -43,6 +44,7 @@ class ViewDispatcher:
             "popular-mrt-routes-on-weekends": self.popular_mrt_routes_on_weekends,
             "popular-end-trips": self.popular_end_trips,
             "popular-stations": self.popular_stations,
+            "shopping-mall-traffic": self.shopping_mall_traffic,
         }
 
     def dispatch(self, slug):
@@ -101,3 +103,6 @@ class ViewDispatcher:
             results = new
 
         return render_template("tasks/popular_stations.html", results=results)
+
+    def shopping_mall_traffic(self):
+        return redirect(url_for("frontend.mall_index"))

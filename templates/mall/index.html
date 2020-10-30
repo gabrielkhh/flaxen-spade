@@ -9,7 +9,7 @@
                         Simply choose a shopping mall from the table below and view some interesting information about it!</p>
                     <p class="has-text-weight-bold mt-3">Information: Click on the export button below to save the raw data in JSON format.</p>
                 </div>
-                <a class="button is-info mt-3" href="/export/shopping-mall-foot-traffic-volume">Export</a>
+                <a class="button is-info mt-3" href="{{ url_for('frontend.available_task_export', slug='shopping-mall-traffic') }}">Export</a>
             </div>
         </section>
         <section>

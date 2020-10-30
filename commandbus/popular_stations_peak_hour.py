@@ -44,4 +44,6 @@ def run(count):
     # print("Top %d  MRT Station(s) during Weekday Peak Hours" % count)
     # print(outer_list)  # print in JSON format
     with open(dataset_path("results/popular_stations.json"), "w+") as file:
-        json.dump({int(x): results[x] for x in results.keys()}, file, sort_keys=True, indent=4)
+        json.dump(
+            {int(x): results[x] for x in results.keys()}, file, sort_keys=True, indent=4
+        )
