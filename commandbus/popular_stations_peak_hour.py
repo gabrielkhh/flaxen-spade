@@ -36,14 +36,37 @@ def run(count):
                     }
                 )
 
-            # print in tabulate format
-            """print(
-                tabulate([["hour", "pt_code", "station_name", "tap_in"],[index, data["pt_code"], data["station_name"],
-                                                                         data["tap_in"]],],headers="firstrow",)+"\n")"""
-
     # print("Top %d  MRT Station(s) during Weekday Peak Hours" % count)
     # print(outer_list)  # print in JSON format
     with open(dataset_path("results/popular_stations.json"), "w+") as file:
         json.dump(
             {int(x): results[x] for x in results.keys()}, file, sort_keys=True, indent=4
         )
+
+    outer_list = []
+
+    for hour in hours:
+        result_list = []
+        for data in results[str(hour)]:
+            result_dict = {
+                "pt_code": data["pt_code"],
+                "station_name": data["station_name"],
+                "tap_in": data["tap_in"],
+            }
+            result_list.append(result_dict)
+
+            print(
+                tabulate(
+                    [
+                        ["hour", "pt_code", "station_name", "tap_in"],
+                        [hour, data["pt_code"], data["station_name"], data["tap_in"]],
+                    ],
+                    headers="firstrow",
+                )
+                + "\n"
+            )
+
+        outer_list.append({"hour": hour, "stations": result_list})
+
+        print("Top %d MRT Station(s) during Weekday Peak Hours" % count)
+        print(outer_list)  # print in JSON format
