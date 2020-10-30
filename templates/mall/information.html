@@ -4,12 +4,13 @@
     <div class="column is-12">
         <section>
         </section>
-        <section class="hero is-info welcome is-small mb-4">
+        <section class="hero is-small mb-4">
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">Mall Traffic of {{ mallName }} for June 2020</h1>
-                    <h2 class="subtitle">View foot traffic volume of various shopping malls around Singapore based on
-                        data from the nearest train station.</h2>
+                    <h2 class="is-size-5">View some interesting information about {{ mallName }} such as
+                    the nearest MRT station, a map view and the approximate traffic volume in hourly ranges for weekdays and weekends/holidays
+                    in the month.</h2>
                 </div>
             </div>
         </section>
@@ -23,9 +24,11 @@
                 <div class="tile is-child box">
                     <p class="title has-text-centered">Peak Volume Information</p>
                     <p class="is-size-5">Weekdays Peak Volume:</p>
-                    <p class="has-text-centered">{{ occurence.maxWeekday.volume }} which occurred at hour {{ occurence.maxWeekday.hour }}</p>
+                    <p class="has-text-centered">{{ occurence.maxWeekday.volume }} which occurred at
+                        hour {{ occurence.maxWeekday.hour }}</p>
                     <p class="is-size-5 mt-3">Weekends/Holidays Peak Volume:</p>
-                    <p class="has-text-centered">{{ occurence.maxWeekend.volume }} which occurred at hour {{ occurence.maxWeekend.hour }}</p>
+                    <p class="has-text-centered">{{ occurence.maxWeekend.volume }} which occurred at
+                        hour {{ occurence.maxWeekend.hour }}</p>
                 </div>
             </div>
             <div class="tile is-parent">
@@ -61,7 +64,19 @@
         </section>
 
         <section>
+            <div class="notification is-info" id="tooltip">
+                <button class="delete" onclick="closeToolTip()" id="closeTooltip"></button>
+                <strong>Useful Tip:</strong> You may change the sorting order of the table data below by clicking on the column
+                headers and swapping between ascending and descending order!
+            </div>
             <mall-table :table-data="{{ mallObj }}"></mall-table>
         </section>
     </div>
+{% endblock %}
+{% block scripts %}
+     <script>
+        function closeToolTip() {
+            document.getElementById("tooltip").style.display = "none";
+        }
+     </script>
 {% endblock %}

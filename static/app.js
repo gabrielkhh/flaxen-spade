@@ -381,7 +381,7 @@ Vue.component("mall-list-table", {
             var encodedName = encodeURI(mallName);
 
             dict.name = mallName;
-            dict.url = "<a class='button is-primary' href='/mall/" + encodedName + "'>View Information</a>";
+            dict.url = '<a class="button is-primary" href="/mall/' + encodedName + '">View Information</a>';
 
             mallsArr.push(dict);
         }
